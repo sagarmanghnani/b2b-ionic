@@ -20,13 +20,6 @@
   </ion-item>
   <form [formGroup] = "loginform">
   <ion-item>
-         <ion-label>Account Type</ion-label>
-         <ion-select formControlName="accountType">
-            <ion-option value="Consumer">Consumer</ion-option>
-            <ion-option value="Supplier">Supplier</ion-option>
-         </ion-select>
-       </ion-item>
-  <ion-item>
     <ion-label floating>Email / Mobile Number</ion-label>
     <ion-input type="text" formControlName = "username" ></ion-input>
   </ion-item>
@@ -43,15 +36,13 @@
   <ion-item *ngIf = "!loginform.controls.password.valid && loginform.controls.password.dirty">
         <p>Enter valid password</p>
       </ion-item>
-  
-  
 
   </form>
   <button ion-button round [disabled] = "!loginform.valid" (click) = "postLoginRequest()">Login</button>
   <br>
   <ion-item>
     
-    <a href="">Forgot Password</a>
+    <a (click) = "push()">Forgot Password</a>
   </ion-item>
 </ion-list>
 </ion-content>

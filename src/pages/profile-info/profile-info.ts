@@ -26,6 +26,7 @@ export class ProfileInfoPage {
   
   
   phone:any = this.navParams.get('phones');
+  accountType = this.navParams.get('accountType');
   Cameraupload()
   {
     const options: CameraOptions = {
@@ -74,12 +75,13 @@ export class ProfileInfoPage {
 
        let option1: FileUploadOptions = {
          fileKey:'file',
-         fileName: this.phone +'.jpeg',
+         fileName: '.jpeg',
          headers: {},
          mimeType: "multipart/form-data",
          httpMethod: 'POST',
          params: {
            phone: JSON.stringify(this.phone),
+           accountType: JSON.stringify(this.accountType),
          }
         }
         
@@ -97,7 +99,7 @@ export class ProfileInfoPage {
      (err)=>{
         alert("failed");
      }
-
+     
        );
       
   }

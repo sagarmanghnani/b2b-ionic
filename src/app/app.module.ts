@@ -3,7 +3,6 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import {SignupPage} from '../pages/signup/signup'
@@ -17,6 +16,11 @@ import {Camera} from '@ionic-native/camera';
 import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
 import { FileChooser } from '@ionic-native/file-chooser';
 import {ActionSheet, ActionSheetOptions} from '@ionic-native/action-sheet';
+import {ForgotPage} from '../pages/forgot/forgot';
+import {ForgotpassPage} from '../pages/forgotpass/forgotpass';
+import {PostrequestPage} from '../pages/postrequest/postrequest';
+import {PostRequestPage} from '../pages/post-request/post-request';
+
 
 
 @NgModule({
@@ -26,7 +30,11 @@ import {ActionSheet, ActionSheetOptions} from '@ionic-native/action-sheet';
     SignupPage,
     LoginPage,
     OtpPage,
-    ProfileInfoPage,  
+    ProfileInfoPage,
+    ForgotPage,
+    ForgotpassPage,  
+    PostrequestPage,
+    PostRequestPage,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +50,10 @@ import {ActionSheet, ActionSheetOptions} from '@ionic-native/action-sheet';
     LoginPage,
     OtpPage,
     ProfileInfoPage,
+    ForgotPage,
+    ForgotpassPage,
+    PostrequestPage,
+    PostRequestPage,
   ],
   providers: [
     StatusBar,

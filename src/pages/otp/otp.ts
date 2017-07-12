@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Http, Headers} from '@angular/http';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProfileInfoPage} from '../profile-info/profile-info';
-
+import {ForgotpassPage} from '../forgotpass/forgotpass';
 
 /**
  * Generated class for the OtpPage page.
@@ -31,38 +31,75 @@ appNumber: any
   }
 
 phone:any = this.navParams.get('phone');
-accountType:any = this.navParams.get('accountType');
-
+accountType:any = 'Consumer';
+pageType:any = this.navParams.get('pageType');
+email:any = this.navParams.get('email');
   sendOtp()
   {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-
-    let data = JSON.stringify({
-      phone: this.phone,
-      otp: this.otp.get('otps').value,
-      accountType: this.accountType,
-    });
     
-    console.log("otp value is" + this.otp.get('otps').value);
-
-    this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=getOtp',data,headers).map(res => res.json()).subscribe(res => {
-      if(res.status == 'Success')
+      // during forgot password page 
+      alert(this.email);
+      alert(this.pageType);
+      if(this.pageType == 'forgot')
       {
-        alert(res.status);
-        this.navCtrl.push(ProfileInfoPage, {
-          phones:this.phone
+        alert("hello");
+        let data = JSON.stringify({
+          email:this.email,
+          accountType:this.accountType,
+          otp:this.otp.get('otps').value,
         });
-    }
-    else{
-      alert(res.msg);
-    }
-    
-    },
-    (err)=>{
-      console.log("failed")
-    }
-    )
+
+        this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=verifyOtp', data, headers).map(res=>res.json()).subscribe(res=>{
+          if(res.status == 'Success')
+          {
+            alert(res.msg + " verify");
+            this.navCtrl.push(ForgotpassPage, {
+              email:this.email
+            });
+          }
+          else
+          {
+            alert(res.msg + " verify");
+          }
+        }, 
+        (err)=>{
+          alert("failed verify");
+        }
+        );
+      }
+
+      // during Signup page
+      else
+      {
+        let data = JSON.stringify({
+          phone: this.phone,
+          otp: this.otp.get('otps').value,
+          accountType: this.accountType,
+        });
+        
+        console.log("otp value is" + this.otp.get('otps').value);
+
+        this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=getOtp',data,headers).map(res => res.json()).subscribe(res => {
+          if(res.status == 'Success')
+          {
+              alert(res.msg);
+              this.navCtrl.push(ProfileInfoPage, {
+              phones:this.phone,
+              accountType: this.accountType,
+            });
+        }
+        else{
+          alert(res.msg);
+        }
+        
+        },
+        (err)=>{
+          alert("failed incredibly");
+        }
+        )
+  }
   }
 }
 
