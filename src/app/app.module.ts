@@ -18,8 +18,9 @@ import { FileChooser } from '@ionic-native/file-chooser';
 import {ActionSheet, ActionSheetOptions} from '@ionic-native/action-sheet';
 import {ForgotPage} from '../pages/forgot/forgot';
 import {ForgotpassPage} from '../pages/forgotpass/forgotpass';
-import {PostrequestPage} from '../pages/postrequest/postrequest';
 import {PostRequestPage} from '../pages/post-request/post-request';
+import {CategoryPage} from '../pages/category/category';
+import {DeletePage} from '../pages/delete/delete';
 
 
 
@@ -33,8 +34,9 @@ import {PostRequestPage} from '../pages/post-request/post-request';
     ProfileInfoPage,
     ForgotPage,
     ForgotpassPage,  
-    PostrequestPage,
     PostRequestPage,
+    CategoryPage,
+    DeletePage,
   ],
   imports: [
     BrowserModule,
@@ -52,8 +54,9 @@ import {PostRequestPage} from '../pages/post-request/post-request';
     ProfileInfoPage,
     ForgotPage,
     ForgotpassPage,
-    PostrequestPage,
     PostRequestPage,
+    CategoryPage,
+    DeletePage,
   ],
   providers: [
     StatusBar,

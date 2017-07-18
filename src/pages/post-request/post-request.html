@@ -14,15 +14,88 @@
 
 
 <ion-content padding>
-<ion-list>
-  <ion-item>
-    <button ion-button color="danger" clear (click) = "navCat()" >Select Category</button>
-  </ion-item>
-  <form [formGroup] = "request">
-    <ion-item>
-      <ion-label floating>Title</ion-label>
-      <ion-input type="text" formControlName="title"></ion-input>
-    </ion-item>
-  </form>
-</ion-list>
+ <p *ngIf = "range">{{range}}</p>
+  <ion-slides>
+    <ion-slide>
+      <ion-card>
+        <form [formGroup] = "request">
+          <ion-list>
+            <ion-item>
+              <ion-label floating>Title</ion-label>
+              <ion-input type="text" formControlName="Title" [class.invalid] = "!request.controls.Title.valid && request.controls.Title.dirty"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label floating>Description</ion-label>
+              <ion-input type="text" formControlName="Description" [class.invalid] = "!request.controls.Description.valid && request.controls.Description.dirty"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label floating>Model Number</ion-label>
+              <ion-input type="text" formControlName="modelnum" [class.invalid] = "!request.controls.modelnum.valid && request.controls.modelnum.dirty"></ion-input>
+            </ion-item>
+          </ion-list>
+          <button ion-button round (click) = "next()" [disabled] = "!request.valid">Next</button>
+        </form>
+      </ion-card>
+    </ion-slide>
+
+
+    <ion-slide>
+      <ion-card>
+        <form [formGroup] = "request1">
+          <ion-grid>
+            Enter Price range
+            <ion-row>
+              <ion-col col-6>
+                <ion-item>
+                <ion-label floating>minRange</ion-label>
+                <ion-input type="number" formControlName = "minRange" [class.invalid] = "!request1.controls.minRange.valid && request1.controls.minRange.dirty"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col col-6>
+                <ion-item>
+                <ion-label floating>maxRange</ion-label>
+                <ion-input type="number" formControlName = "maxRange" ngDefaultControl [(ngModel)] = "check" [class.invalid] = "!request1.controls.maxRange.valid && request1.controls.maxRange.dirty"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-item *ngIf="!request1.controls.maxRange.valid && request1.controls.maxRange.dirty">
+            Maximum range must be greater then Minimum range
+          </ion-item>
+          <button ion-button round (click) = "next()" [disabled] = "!request1.valid">Next</button>
+          <button ion-button round (click) = "prev()">prev</button>
+        </form>
+      </ion-card>
+    </ion-slide>
+
+
+    <ion-slide>
+      <ion-card>
+        <form [formGroup] = "request2">
+          <ion-list>
+             <ion-item>
+              <ion-label floating>Quantity</ion-label>
+              <ion-input type="text" formControlName="Quantity" [class.invalid] = "!request2.controls.Quantity.valid && request2.controls.Quantity.dirty"></ion-input>
+            </ion-item>
+
+
+            <ion-item *ngIf = "!request2.controls.Quantity.valid && request2.controls.Quantity.dirty">
+              Please enter Quantity greater then 0
+            </ion-item>
+
+
+             <ion-item>
+              <ion-label floating>color</ion-label>
+              <ion-input type="text" formControlName="color" [class.invalid] = "!request2.controls.color.valid && request2.controls.color.dirty"></ion-input>
+            </ion-item>
+          </ion-list>
+          <button (click) = "sendRequest()" [disabled] = "!request2.valid">send</button>
+         <button ion-button round (click) = "prev()">prev</button>
+        </form>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>   
 </ion-content>

@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Http, Headers} from '@angular/http';
 import {SignupPage} from '../signup/signup';
 import {ForgotPage} from '../forgot/forgot';
+import {Storage} from '@ionic/storage'
 
 /**
  * Generated class for the LoginPage page.
@@ -19,7 +20,7 @@ import {ForgotPage} from '../forgot/forgot';
 export class LoginPage {
   submit: boolean = false;
   loginform: FormGroup;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public http: Http, public storage:Storage) {
     this.loginform = formBuilder.group({
       username:['', Validators.compose([Validators.required])],
       password: ['', Validators.compose([Validators.minLength(8), Validators.pattern('[a-zA-Z]*'), Validators.required])],
@@ -40,12 +41,17 @@ postLoginRequest()
       password:this.loginform.get('password').value,
       accountType: "Consumer",
 });
-    this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=logIn', data, headers).map(res=>res.json()).subscribe(res=>
+
+alert(data);
+    this.http.post('http://localhost/signup-API/new1.php?rquest=logIn', data, headers).map(res=>res.json()).subscribe(res=>
     {
       console.log(res.status);
       if(res.status === "Success")
       {
         this.error = res.msg;
+        var id = res.id;
+        this.storage.set('id', id);
+        this.storage.get('id').then((val) =>{alert(val);});
       }
       else
       {

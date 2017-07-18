@@ -2,27 +2,29 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Http, Headers} from '@angular/http';
 import { ViewController } from 'ionic-angular';
+import {PostRequestPage} from '../post-request/post-request'
 /**
- * Generated class for the PostrequestPage page.
+ * Generated class for the CategoryPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-
-
 @IonicPage()
 @Component({
-  selector: 'page-postrequest',
-  templateUrl: 'postrequest.html',
+  selector: 'page-category',
+  templateUrl: 'category.html',
 })
-export class PostrequestPage {
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http, public viewCtrl:ViewController) {
+export class CategoryPage {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http) {
   }
-data:any
+
+  data:any
 show:any
 id:any
 passon:any
 children:any
+pass:any
 
 ionViewWillEnter()
 {
@@ -36,7 +38,7 @@ ionViewWillEnter()
   getCategory()
   {
     var arr = new Array();
-    this.http.get('http://10.0.2.2/signup-API/new1.php?rquest=showCategory').map(res => res.json()).subscribe(res =>{
+    this.http.get('http://localhost/signup-API/new1.php?rquest=showCategory').map(res => res.json()).subscribe(res =>{
       this.data = res.msg;
       this.passon = this.data;
 
@@ -81,14 +83,14 @@ ionViewWillEnter()
     this.children = child;
   }
 
-  close()
+  showing(passid)
   {
-    this.viewCtrl.dismiss();
+    alert(passid);
+    this.navCtrl.push(PostRequestPage, {
+      passing:passid,
+    });
   }
-
-  closeModal(id) {
-    alert(id);
-    this.viewCtrl.dismiss(id);
-  }
-
 }
+
+
+

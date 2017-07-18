@@ -5,8 +5,9 @@ import {LoginPage} from '../login/login';
 import {ProfileInfoPage} from '../profile-info/profile-info';
 import {ForgotPage} from '../forgot/forgot';
 import {ForgotpassPage} from '../forgotpass/forgotpass';
-import {PostrequestPage} from '../postrequest/postrequest';
 import {PostRequestPage} from '../post-request/post-request';
+import {CategoryPage} from '../category/category'
+import {DeletePage} from '../delete/delete'
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -44,13 +45,19 @@ export class HomePage {
     this.navCtrl.push(ForgotpassPage);
   }
 
-  Postrequest()
-  {
-    this.navCtrl.push(PostrequestPage); 
-  }
 
   post()
   {
     this.navCtrl.push(PostRequestPage);
+  }
+
+  category()
+  {
+    this.navCtrl.push(CategoryPage);
+  }
+
+  slide()
+  {
+    this.navCtrl.push(DeletePage);
   }
 }

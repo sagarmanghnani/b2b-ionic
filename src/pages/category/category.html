@@ -1,5 +1,5 @@
 <!--
-  Generated template for the PostrequestPage page.
+  Generated template for the CategoryPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,19 +7,15 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Category</ion-title>
+    <ion-title>category</ion-title>
   </ion-navbar>
-  <ion-buttons start>
-    <button ion-button (click) = "close()">
-      <ion-icon name="md-close"></ion-icon>
-    </button>
-  </ion-buttons>
+
 </ion-header>
 
 
 <ion-content padding>
 
-  <ion-card>
+<ion-card>
 
     <ion-list *ngIf = "data">
       <button ion-item *ngFor = "let is of show" (click) = "selectSubcategory(is.id)">
@@ -27,7 +23,7 @@
         {{is.name}}
     </button>
 
-     <button ion-item *ngFor = "let is of children" (click) = "closeModal(is.id)">
+     <button ion-item *ngFor = "let is of children" (click) = "showing(is.id)">
       <ion-icon name="cart" item-start></ion-icon>
         {{is.name}}
     </button>
