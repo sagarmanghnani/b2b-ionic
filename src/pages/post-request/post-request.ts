@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Slides, LoadingController } from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import {Http, Headers} from '@angular/http';
 import {Storage} from '@ionic/storage';
-import {greater} from '../../validators/greaterthen'
+import {greater} from '../../validators/greaterthen';
+import {DashboardPage} from '../dashboard/dashboard';
 
 /**
  * Generated class for the PostRequestPage page.
@@ -18,13 +19,19 @@ import {greater} from '../../validators/greaterthen'
 })
 
 export class PostRequestPage {
+  @ViewChild(Slides) setslide:Slides;
 id:any = this.navParams.get('passing');
 public consid:any;
 request:FormGroup;
 request1:FormGroup;
 request2:FormGroup;
 range:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public http:Http, public storage:Storage) {
+post:any;
+location:any;
+cityId:any;
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public http:Http, public storage:Storage, public loading:LoadingController) {
     this.request = formBuilder.group({
       Title:['', Validators.required],
       Description:['', Validators.required],
@@ -44,14 +51,25 @@ range:any;
        Quantity:['', Validators.compose([Validators.required, this.quantityCheck])],
       color:['', Validators.required],
     });
+  
+     let loadingPopup = this.loading.create({
+      content: 'Loading Posts....'
+    });
+    loadingPopup.present();
+    this.http.get('http://localhost/signup-API/new1.php?rquest=selectCity').map(res => res.json()).subscribe(res => {
+      this.post = res.msg;
+      loadingPopup.dismiss();
+    });
+
   }
 
 
   greaterThen(group:FormGroup)
   {
-    var minrange = group.controls['minRange'].value;
-    var maxRange = group.controls['maxRange'].value;
-
+    var minrange = parseInt(group.controls['minRange'].value, 10);
+    var maxRange = parseInt(group.controls['maxRange'].value, 10);
+  if(minrange >=0 && maxRange >=0)
+  {
     if(minrange == maxRange)
     {
       group.controls['maxRange'].setErrors({"equalTo":true});
@@ -63,6 +81,20 @@ range:any;
     else{
       return null;
     }
+  }
+  else if(minrange < 0)
+  {
+    group.controls['minRange'].setErrors({"minrange is negative":true});
+  }
+  else if(maxRange < 0)
+  {
+    group.controls['maxRange'].setErrors({"maxrange is negative":true});
+  }
+  else if(minrange < 0 && maxRange < 0)
+  {
+    group.controls['maxRange'].setErrors({"maxrange is negative":true});
+    group.controls['minRange'].setErrors({"minrange is negative":true});
+  }
   }
 
   quantityCheck(control: FormControl)
@@ -78,9 +110,10 @@ range:any;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PostRequestPage');
+      this.setslide.lockSwipes(true);
   }
 
-@ViewChild(Slides) setslide:Slides;
+
   ionViewWillEnter()
   {
    this.load();
@@ -110,6 +143,7 @@ range:any;
       modelnum:this.request.get('modelnum').value,
       productType:"New",
       consumerid:this.consid,
+      cityid:this.cityId,
     });
 
     alert(data);
@@ -117,7 +151,8 @@ range:any;
     this.http.post('http://localhost/signup-API/new1.php?rquest=postRequest', data, headers).map(res=>res.json()).subscribe(res=>{
       if(res.status == 'Success')
       {
-        alert(res.msg);
+        this.navCtrl.push(DashboardPage); 
+        console.log(res.city);
       }
       else
       {
@@ -132,11 +167,16 @@ range:any;
 
    next()
   {
+    this.setslide.lockSwipes(false);
     this.setslide.slideNext();
+    this.setslide.lockSwipes(true);
+
   }
   prev()
   {
+    this.setslide.lockSwipes(false);
     this.setslide.slidePrev();
+    this.setslide.lockSwipes(true);
   }
 
   show()
@@ -144,6 +184,36 @@ range:any;
     var min = this.request1.controls['minRange'].value;
     alert(min);
   }
+
+  initializedItems()
+  {
+    this.location = this.post;
+  }
+
+  getLocation(ev: any)
+  {
+    this.initializedItems();
+    let val = ev.target.value;
+    if (val && val.trim() != ''){
+    this.location = this.location.filter((loc) => {
+      return(loc.location.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      
+    })
+  }
+  else if(!val)
+  {
+    this.location = null;
+  }
+}
+
+getCity(id)
+{
+   this.cityId = id;
+   this.next();
+}
+
+
+
 }
 
 

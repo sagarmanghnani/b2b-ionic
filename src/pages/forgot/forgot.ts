@@ -39,11 +39,13 @@ forgot: FormGroup;
      this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=forgotPass', data, headers).map(res=>res.json()).subscribe(res=>{
        if(res.status == 'Success')
        {
+         alert(res.msg);
        this.navCtrl.push(OtpPage, {
          pageType: 'forgot',
-         email:this.forgot.get('email').value,
-         
-       });
+         email:this.forgot.get('email').value, 
+       }
+       
+       );
      }
      else
      {

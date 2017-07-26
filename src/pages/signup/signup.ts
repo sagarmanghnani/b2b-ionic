@@ -33,7 +33,7 @@ error: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public formBuilder: FormBuilder, public http: Http, public appVersion:AppVersion) {
       this.oneform = formBuilder.group({
-        password: ['', Validators.compose([Validators.minLength(8), Validators.pattern('[a-zA-Z]*'), Validators.required])],
+        password: ['', Validators.compose([Validators.minLength(8), Validators.required])],
         Email:['', Validators.email],
         name:['', Validators.required],
         confirm:['', Validators.required],

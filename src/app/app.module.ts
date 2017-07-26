@@ -21,7 +21,10 @@ import {ForgotpassPage} from '../pages/forgotpass/forgotpass';
 import {PostRequestPage} from '../pages/post-request/post-request';
 import {CategoryPage} from '../pages/category/category';
 import {DeletePage} from '../pages/delete/delete';
-
+import {ShowRequestPage} from '../pages/show-request/show-request';
+import {RequirementDetailsPage} from '../pages/requirement-details/requirement-details';
+import {WelcomePage} from '../pages/welcome/welcome';
+import {DashboardPage} from '../pages/dashboard/dashboard';
 
 
 @NgModule({
@@ -37,6 +40,11 @@ import {DeletePage} from '../pages/delete/delete';
     PostRequestPage,
     CategoryPage,
     DeletePage,
+    ShowRequestPage,
+    RequirementDetailsPage,
+    WelcomePage,
+    DashboardPage,
+
   ],
   imports: [
     BrowserModule,
@@ -57,6 +65,10 @@ import {DeletePage} from '../pages/delete/delete';
     PostRequestPage,
     CategoryPage,
     DeletePage,
+    ShowRequestPage,
+    RequirementDetailsPage,
+    WelcomePage,
+    DashboardPage,
   ],
   providers: [
     StatusBar,

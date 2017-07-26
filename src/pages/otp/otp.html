@@ -28,6 +28,8 @@
                   <ion-item>
                     <ion-input type="number" placeholder="Enter OTP" formControlName = "otps"></ion-input>
                   </ion-item>
+
+                  <p ion-item *ngIf = "error">{{error}}</p>
               </form>
           </ion-list>
             

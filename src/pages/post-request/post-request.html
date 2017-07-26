@@ -34,6 +34,7 @@
               <ion-label floating>Model Number</ion-label>
               <ion-input type="text" formControlName="modelnum" [class.invalid] = "!request.controls.modelnum.valid && request.controls.modelnum.dirty"></ion-input>
             </ion-item>
+             
           </ion-list>
           <button ion-button round (click) = "next()" [disabled] = "!request.valid">Next</button>
         </form>
@@ -45,7 +46,7 @@
       <ion-card>
         <form [formGroup] = "request1">
           <ion-grid>
-            Enter Price range
+            Enter Price range in (₹)
             <ion-row>
               <ion-col col-6>
                 <ion-item>
@@ -69,6 +70,16 @@
           <button ion-button round (click) = "prev()">prev</button>
         </form>
       </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <p>Enter location</p>
+       <ion-searchbar (ionInput)="getLocation($event)" placeholder="state, district"></ion-searchbar>
+       <ion-list *ngIf = "location">
+          <ion-item  *ngFor="let item of location" (click) = "getCity(item.id)">
+            {{ item.location }}    
+          </ion-item>
+      </ion-list>
     </ion-slide>
 
 
@@ -98,4 +109,6 @@
       </ion-card>
     </ion-slide>
   </ion-slides>   
+
+  
 </ion-content>

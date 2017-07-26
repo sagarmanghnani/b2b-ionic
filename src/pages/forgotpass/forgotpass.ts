@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Http, Headers} from '@angular/http';
 import {matchingPasswords} from '../../validators/confirmpass';
+import {LoginPage} from '../login/login';
 
 /**
  * Generated class for the ForgotpassPage page.
@@ -46,8 +47,15 @@ export class ForgotpassPage {
         email:this.email,
       });
       alert(data);
-      this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=newPassword', data,headers).map(res=>res.json()).subscribe(res=>{
-        alert(res.msg);
+      this.http.post('http://localhost/signup-API/new1.php?rquest=newPassword', data,headers).map(res=>res.json()).subscribe(res=>{
+        if(res.status == 'Success')
+        {
+          this.navCtrl.push(LoginPage);
+        }
+        else
+        {
+          alert(res.msg);
+        }
       },
       (err)=>{
         alert("failed to connect");

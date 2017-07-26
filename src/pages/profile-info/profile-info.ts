@@ -4,6 +4,7 @@ import {Http,Headers} from '@angular/http';
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
 import { ActionSheetController } from 'ionic-angular';
+import {DashboardPage} from '../dashboard/dashboard';
 
 /**
  * Generated class for the ProfileInfoPage page.
@@ -89,6 +90,7 @@ export class ProfileInfoPage {
           alert(data.response);
           var key = Object.keys(data);
           alert(key);
+          this.navCtrl.push(DashboardPage);
         },
         (err) =>{
           alert('failed');
@@ -109,7 +111,7 @@ export class ProfileInfoPage {
 
    presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
-      title: 'Modify your album',
+      title: 'Select Profile picture',
       buttons: [
         {
           text: 'From Gallery',
@@ -132,6 +134,11 @@ export class ProfileInfoPage {
       ]
     });
     actionSheet.present();
+  }
+
+  skip()
+  {
+    this.navCtrl.push(DashboardPage);
   }
 }
 

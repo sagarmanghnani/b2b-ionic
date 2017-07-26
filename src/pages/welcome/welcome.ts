@@ -1,42 +1,46 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController, MenuController, Slides } from 'ionic-angular';
+import {SignupPage} from '../signup/signup';
+import {LoginPage} from '../login/login';
 import {Http, Headers} from '@angular/http';
-import { ViewController } from 'ionic-angular';
-import {PostRequestPage} from '../post-request/post-request'
+import {PostRequestPage} from '../post-request/post-request';
 /**
- * Generated class for the CategoryPage page.
+ * Generated class for the WelcomePage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 @IonicPage()
 @Component({
-  selector: 'page-category',
-  templateUrl: 'category.html',
+  selector: 'page-welcome',
+  templateUrl: 'welcome.html',
 })
-export class CategoryPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http, public menu:MenuController) {
-    menu.enable(true, 'menu1');
-  }
-
-  data:any
+export class WelcomePage {
+@ViewChild(Slides) setslide:Slides;
+   data:any
 show:any
 id:any
 passon:any
 children:any
 pass:any
 
-ionViewWillEnter()
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http, public loading:LoadingController, public menu:MenuController) {
+
+}
+
+ 
+  
+
+  ionViewWillEnter()
 {
   this.getCategory();
 }
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PostrequestPage');
+    console.log('ionViewDidLoad WelcomePage');
   }
 
-
-  getCategory()
+getCategory()
   {
     var arr = new Array();
     this.http.get('http://localhost/signup-API/new1.php?rquest=showCategory').map(res => res.json()).subscribe(res =>{
@@ -82,6 +86,7 @@ ionViewWillEnter()
       }
     }
     this.children = child;
+    this.setslide.slideNext();
   }
 
   showing(passid)
@@ -92,6 +97,7 @@ ionViewWillEnter()
     });
   }
 }
-
+ 
+  
 
 

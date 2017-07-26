@@ -4,6 +4,7 @@ import {Http, Headers} from '@angular/http';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProfileInfoPage} from '../profile-info/profile-info';
 import {ForgotpassPage} from '../forgotpass/forgotpass';
+import {Storage} from '@ionic/storage';
 
 /**
  * Generated class for the OtpPage page.
@@ -18,9 +19,10 @@ import {ForgotpassPage} from '../forgotpass/forgotpass';
 })
 
 export class OtpPage {
-otp:FormGroup
-appNumber: any
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public formBuilder: FormBuilder) {
+otp:FormGroup;
+appNumber: any;
+error:any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public formBuilder: FormBuilder, public storage:Storage) {
     this.otp = formBuilder.group({
         otps: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(5)])],
     })
@@ -61,7 +63,7 @@ email:any = this.navParams.get('email');
           }
           else
           {
-            alert(res.msg + " verify");
+            this.error = res.msg;
           }
         }, 
         (err)=>{
@@ -84,14 +86,14 @@ email:any = this.navParams.get('email');
         this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=getOtp',data,headers).map(res => res.json()).subscribe(res => {
           if(res.status == 'Success')
           {
-              alert(res.msg);
+              this.storage.set('id', res.msg);
               this.navCtrl.push(ProfileInfoPage, {
               phones:this.phone,
               accountType: this.accountType,
             });
         }
         else{
-          alert(res.msg);
+          this.error = res.msg;
         }
         
         },

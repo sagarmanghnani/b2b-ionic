@@ -1,5 +1,8 @@
 <ion-header>
   <ion-navbar>
+     <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+     </button>
     <ion-title>
       Ionic Blank
     </ion-title>
@@ -33,18 +36,8 @@
     </ion-item>
 
     <ion-item>
-      <p>Navigate to  reset password</p>
-      <button (click) = "Forgotpass()">forgotPass</button>
-    </ion-item>
-
-    <ion-item>
       <p>Navigate to Postrequest</p>
       <button (click) = "Postrequest()">FOrgotPass</button>
-    </ion-item>
-
-    <ion-item>
-      <p>Navigate to Post</p>
-      <button (click) = "post()">post</button>
     </ion-item>
 
     <ion-item>
@@ -52,10 +45,32 @@
       <button (click) = "category()">post</button>
     </ion-item>
 
+
     <ion-item>
-      <p>Delete</p>
-      <button (click) = "slide()">slide</button>
+      <p>showReq</p>
+      <button (click) = "showReq()">showReq</button>
+    </ion-item>
+
+    <ion-item>
+      <p>Welcome</p>
+      <button (click) = "welcome()">showReq</button>
+    </ion-item>
+
+     <ion-item>
+      <p>Profile info</p>
+      <button (click) = "profile()">profile</button>
+    </ion-item>
+
+     <ion-item>
+      <p>dashboard</p>
+      <button (click) = "Dashboard()">dashboard</button>
+    </ion-item>
+
+     <ion-item>
+      <p>otp</p>
+      <button (click) = "otp()">otp</button>
     </ion-item>
 
   </ion-list>
+  <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>

@@ -7,6 +7,9 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+     </button>
     <ion-title>showRequest</ion-title>
   </ion-navbar>
 
@@ -15,4 +18,24 @@
 
 <ion-content padding>
 
+ <ion-card>
+   <ion-list>
+     <button ion-item *ngFor = "let req of singleArray" (click) = "requirementDetail(req)">
+        <ion-row>
+        <ion-col>
+          <ion-icon name="cart" item-start></ion-icon>
+          {{req.normalReq.Title}}
+        </ion-col>
+        <br>
+        <ion-col offset-7>
+          <small>{{req.date}}</small>
+        </ion-col>
+        </ion-row>
+
+     </button>
+   </ion-list>
+ </ion-card>
+
+
+<button (click) = "showRequest()">clickss</button>
 </ion-content>
