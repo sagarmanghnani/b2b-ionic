@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, MenuController, Slides } from 'ionic-angular';
 import {Http, Headers} from '@angular/http';
 import { ViewController } from 'ionic-angular';
 import {PostRequestPage} from '../post-request/post-request'
@@ -19,13 +19,14 @@ export class CategoryPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http, public menu:MenuController) {
     menu.enable(true, 'menu1');
   }
-
+@ViewChild(Slides) setslide:Slides;
   data:any
 show:any
 id:any
 passon:any
 children:any
 pass:any
+partialUrl:any;
 
 ionViewWillEnter()
 {
@@ -64,6 +65,7 @@ ionViewWillEnter()
       }
       arr.sort(compare);
       this.show = arr;
+      this.partialUrl = "http://localhost/signup-API/";
     },
     (err)=>{
       alert("failed");
@@ -82,6 +84,9 @@ ionViewWillEnter()
       }
     }
     this.children = child;
+    this.setslide.lockSwipes(false);
+    this.setslide.slideNext();
+    this.setslide.lockSwipes(true);
   }
 
   showing(passid)

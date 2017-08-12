@@ -22,20 +22,27 @@
    <ion-list>
      <button ion-item *ngFor = "let req of singleArray" (click) = "requirementDetail(req)">
         <ion-row>
-        <ion-col>
-          <ion-icon name="cart" item-start></ion-icon>
-          {{req.normalReq.Title}}
-        </ion-col>
-        <br>
-        <ion-col offset-7>
-          <small>{{req.date}}</small>
-        </ion-col>
+          <ion-col>
+            <ion-icon name="cart"></ion-icon>
+            {{req.normalReq.Title}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            {{req.normalReq.companyName}}
+          </ion-col>
+        </ion-row>
+          <ion-row>
+          <ion-col>
+            <small>{{req.normalReq.name}}</small>
+          </ion-col>
+          <ion-col style="text-align:end">
+            <small>{{req.date}}</small>
+          </ion-col>
         </ion-row>
 
      </button>
    </ion-list>
  </ion-card>
 
-
-<button (click) = "showRequest()">clickss</button>
 </ion-content>

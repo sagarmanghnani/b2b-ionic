@@ -17,21 +17,32 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="card-background-page">
 
-<ion-card>
-    <p>Select from the above categories</p>
-    <ion-list *ngIf = "data">
-      <button ion-item *ngFor = "let is of show" (click) = "selectSubcategory(is.id)">
-      <ion-icon name="cart" item-start></ion-icon>
-        {{is.name}}
-    </button>
+<ion-grid>
+    <ion-slides>
+      <ion-slide>
+    <ion-row wrap justify-content-start >
+      <ion-col *ngFor = "let is of show" col-12 col-sm-12 col-md-6 col-lg-6 style="padding-bottom:0px;">
+        <ion-card (click) = "selectSubcategory(is.id)" >
+        <img src = "{{this.partialUrl}}{{is.image}}" class="imag">
+        <div class="card-title">{{is.name}}</div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+      </ion-slide>
 
-     <button ion-item *ngFor = "let is of children" (click) = "showing(is.id)">
-      <ion-icon name="cart" item-start></ion-icon>
-        {{is.name}}
-    </button>
-    </ion-list>
 
-  </ion-card>
+      <ion-slide>
+         <ion-row wrap >
+      <ion-col *ngFor = "let is of children" col-12 col-sm-12 col-md-6 col-lg-6>
+        <ion-card (click) = "showing(is.id)">
+        <img src = "../../assets/images/kka.jpg" class="imag">
+        <div class="card-title">{{is.name}}</div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+      </ion-slide>
+    </ion-slides>
+  </ion-grid>
 </ion-content>

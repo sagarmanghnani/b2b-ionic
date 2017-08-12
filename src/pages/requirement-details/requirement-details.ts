@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import {ViewBidsPage} from '../view-bids/view-bids';
 /**
  * Generated class for the RequirementDetailsPage page.
  *
@@ -31,9 +31,17 @@ maxrange:any;
 
 show()
 {
-  var separate = this.requirement.priceRange;
+  var separate = this.requirement.normalReq.priceRange;
   var sep = separate.split(",");
   this.minrange = sep[0];
   this.maxrange = sep[1];
+}
+
+passBid()
+{
+  alert(this.requirement.normalReq.id);
+  this.navCtrl.push(ViewBidsPage, {
+    requestId: this.requirement.normalReq.id
+  });
 }
 }

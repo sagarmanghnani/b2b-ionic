@@ -7,8 +7,12 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-buttons right>
+    <ion-buttons right *ngIf = "!boolcheck">
       <button ion-button (click) = "skip()"> Skip <ion-icon name="arrow-forward"></ion-icon></button>
+    </ion-buttons>
+
+     <ion-buttons right *ngIf = "boolcheck">
+      <button ion-button (click) = "skip()"> Next <ion-icon name="arrow-forward"></ion-icon></button>
     </ion-buttons>
     <ion-title>profileInfo</ion-title>
   </ion-navbar>
@@ -18,14 +22,25 @@
 
 <ion-content padding>
   <ion-grid>
-<ion-card>
-<ion-row>
-  <ion-col offset-6>
-     <img  src = "../../assets/images/profile.png" class="image">
-  </ion-col>
-</ion-row>
-<button ion-button round (click) = "presentActionSheet()">Select image</button>
+<ion-card class="card-layout">
+  <ion-row>
 
+<ion-col>
+  <div *ngIf = "!profileImage">
+     <img  src = "../../assets/images/profile.png" class="image">
+  </div>
+</ion-col>
+
+<ion-col>
+  <div *ngIf = "profileImage">
+     <img src = "{{profileImage}}" class="image">
+  </div>
+</ion-col>
+
+<ion-col col-12>
+<button class="text" ion-button block (click) = "presentActionSheet()">Select image</button>
+</ion-col>
+
+  </ion-row>
 </ion-card>  
 </ion-grid>
-</ion-content>

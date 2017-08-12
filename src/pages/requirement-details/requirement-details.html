@@ -16,18 +16,19 @@
 <ion-content padding>
 
 <ion-grid>
-  <ion-card>
-    <br>
-  <ion-row offset-6>
-    Requirement Details
-  </ion-row>
+ 
+
+ <ion-card>
+  <ion-row justify-content-start>
+   <p style="text-align:center">Requirement Details</p>
+  </ion-row> 
   <br>
   <ion-col ion-item>
-    <h1>{{requirement.Title}}</h1>
+    <h1>{{requirement.normalReq.Title}}</h1>
   </ion-col>
   <br>
   <ion-col ion-item>
-    <h4>Description :- {{requirement.description}}</h4>
+    <h4>Description :- {{requirement.normalReq.description}}</h4>
   </ion-col>
   <br>
   <ion-col ion-item>
@@ -35,28 +36,55 @@
   </ion-col>
   <br>
   <ion-col ion-item>
-    product type :- {{requirement.productType}}
+    product type :- {{requirement.normalReq.productType}}
   </ion-col>
 <br>
   <ion-col ion-item>
-    Model number :- {{requirement.modelNo}}
+    Model number :- {{requirement.normalReq.modelNo}}
   </ion-col>
 <br>
   <ion-col ion-item>
-    color :- {{requirement.colorPreference}}
+    color :- {{requirement.normalReq.colorPreference}}
   </ion-col>
   <br>
   <ion-col ion-item>
-    Quantity :- {{requirement.quantity}}
+    Quantity :- {{requirement.normalReq.quantity}}
   </ion-col>
   <br>
   <ion-col offset-9>
-    {{requirement.modifiedDate}}
+    {{requirement.normalReq.modifiedDate}}
   </ion-col>
   </ion-card>
-
-
  
+ <button ion-button round (click) = "passBid()">View Bids</button>
+
 </ion-grid>
 
 </ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

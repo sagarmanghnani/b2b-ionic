@@ -5,9 +5,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {matchingPasswords} from '../../validators/confirmpass';
 import 'rxjs/add/operator/map';
 import {Http, Headers} from '@angular/http';
-import {OtpPage} from '../otp/otp'
-import {AppVersion} from '@ionic-native/app-version'
-
+import {OtpPage} from '../otp/otp';
+import {AppVersion} from '@ionic-native/app-version';
+import { SMS } from '@ionic-native/sms';
 /**
  * Generated class for the SignupPage page.
  *
@@ -29,9 +29,10 @@ submit: boolean = false;
 error: string;
  oneform: FormGroup;
 
+
   
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public formBuilder: FormBuilder, public http: Http, public appVersion:AppVersion) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public formBuilder: FormBuilder, public http: Http, public appVersion:AppVersion, public sms:SMS) {
       this.oneform = formBuilder.group({
         password: ['', Validators.compose([Validators.minLength(8), Validators.required])],
         Email:['', Validators.email],
@@ -44,6 +45,8 @@ error: string;
       }
              
       );
+      
+      
   }
 
   ionViewDidLoad() {
@@ -76,7 +79,17 @@ showData()
         console.log(res);
         if(res.status === 'Success')
         {
+          
           alert("pushing");
+          var phone = this.oneform.get('Phone').value;
+          this.sms.send(phone, res.getotp).then(res => {
+            
+          },
+          (err)=>{
+            alert("failed");
+          }
+          );
+          
           this.navCtrl.push(OtpPage,{
             phone: this.oneform.get('Phone').value,
             accountType: "Consumer",

@@ -28,6 +28,7 @@ export class MyApp {
       { title: 'Post Request', component: CategoryPage },
       { title: 'Show Request', component: ShowRequestPage },
       {title:'Dashboard', component:DashboardPage},
+      {title: 'Home', component:HomePage},
     ];
   }
 

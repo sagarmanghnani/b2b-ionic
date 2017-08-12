@@ -29,7 +29,7 @@ range:any;
 post:any;
 location:any;
 cityId:any;
-
+unit:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public http:Http, public storage:Storage, public loading:LoadingController) {
     this.request = formBuilder.group({
@@ -48,6 +48,7 @@ cityId:any;
      );
 
     this.request2 = formBuilder.group({
+      companyName:'',
        Quantity:['', Validators.compose([Validators.required, this.quantityCheck])],
       color:['', Validators.required],
     });
@@ -129,6 +130,7 @@ cityId:any;
     }
    sendRequest()
   {
+    alert(this.unit);
     alert(this.consid);
      var headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -144,6 +146,8 @@ cityId:any;
       productType:"New",
       consumerid:this.consid,
       cityid:this.cityId,
+      unit: this.unit,
+      companyName:this.request2.get('companyName').value,
     });
 
     alert(data);

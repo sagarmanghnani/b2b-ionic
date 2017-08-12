@@ -74,7 +74,7 @@
 
     <ion-slide>
       <p>Enter location</p>
-       <ion-searchbar (ionInput)="getLocation($event)" placeholder="state, district"></ion-searchbar>
+       <ion-searchbar (ionInput)="getLocation($event)" placeholder="city, state"></ion-searchbar>
        <ion-list *ngIf = "location">
           <ion-item  *ngFor="let item of location" (click) = "getCity(item.id)">
             {{ item.location }}    
@@ -87,11 +87,35 @@
       <ion-card>
         <form [formGroup] = "request2">
           <ion-list>
-             <ion-item>
-              <ion-label floating>Quantity</ion-label>
-              <ion-input type="text" formControlName="Quantity" [class.invalid] = "!request2.controls.Quantity.valid && request2.controls.Quantity.dirty"></ion-input>
-            </ion-item>
+           <ion-row wrap> 
+              <ion-col col-6>
+              <ion-item>
+                <ion-label floating>Quantity</ion-label>
+                <ion-input type="text" formControlName="Quantity" [class.invalid] = "!request2.controls.Quantity.valid && request2.controls.Quantity.dirty"></ion-input>
+              </ion-item>
+              </ion-col>
 
+              <ion-col col-6>
+                <ion-item>
+                  <ion-label floating>Unit</ion-label>
+                  <ion-select [(ngModel)]="unit" [ngModelOptions]="{standalone: true}">
+                    <ion-option value="Pieces">Pieces</ion-option>
+                    <ion-option value="Kilogram">Kilogram</ion-option>
+                    <ion-option  selected value="Units">Units</ion-option>
+                    <ion-option value="Tons">Tons</ion-option>
+                    <ion-option value="meter">meter</ion-option>
+                    <ion-option value="Liter">Liter</ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+              
+           </ion-row>
+          <ion-row>
+            <ion-item>
+              <ion-label floating>Preferred Company Name</ion-label>
+              <ion-input type="text" formControlName = "companyName"></ion-input>
+            </ion-item>
+          </ion-row>
 
             <ion-item *ngIf = "!request2.controls.Quantity.valid && request2.controls.Quantity.dirty">
               Please enter Quantity greater then 0

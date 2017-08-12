@@ -25,6 +25,8 @@ import {ShowRequestPage} from '../pages/show-request/show-request';
 import {RequirementDetailsPage} from '../pages/requirement-details/requirement-details';
 import {WelcomePage} from '../pages/welcome/welcome';
 import {DashboardPage} from '../pages/dashboard/dashboard';
+import { SMS } from '@ionic-native/sms';
+import {ViewBidsPage} from '../pages/view-bids/view-bids';
 
 
 @NgModule({
@@ -44,7 +46,7 @@ import {DashboardPage} from '../pages/dashboard/dashboard';
     RequirementDetailsPage,
     WelcomePage,
     DashboardPage,
-
+    ViewBidsPage,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +71,7 @@ import {DashboardPage} from '../pages/dashboard/dashboard';
     RequirementDetailsPage,
     WelcomePage,
     DashboardPage,
+    ViewBidsPage,
   ],
   providers: [
     StatusBar,
@@ -78,7 +81,8 @@ import {DashboardPage} from '../pages/dashboard/dashboard';
     AppVersion,
     Camera,
     Transfer,
-    FileChooser,    
+    FileChooser,
+    SMS,    
   ]
 })
 export class AppModule {}

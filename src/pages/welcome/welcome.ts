@@ -4,6 +4,7 @@ import {SignupPage} from '../signup/signup';
 import {LoginPage} from '../login/login';
 import {Http, Headers} from '@angular/http';
 import {PostRequestPage} from '../post-request/post-request';
+import { SMS } from '@ionic-native/sms';
 /**
  * Generated class for the WelcomePage page.
  *
@@ -22,9 +23,10 @@ show:any
 id:any
 passon:any
 children:any
-pass:any
+pass:any;
+partialUrl:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http, public loading:LoadingController, public menu:MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http, public loading:LoadingController, public menu:MenuController, public sms:SMS) {
 
 }
 
@@ -43,7 +45,7 @@ pass:any
 getCategory()
   {
     var arr = new Array();
-    this.http.get('http://localhost/signup-API/new1.php?rquest=showCategory').map(res => res.json()).subscribe(res =>{
+    this.http.get('http://10.0.2.2/signup-API/new1.php?rquest=showCategory').map(res => res.json()).subscribe(res =>{
       this.data = res.msg;
       this.passon = this.data;
 
@@ -68,6 +70,7 @@ getCategory()
       }
       arr.sort(compare);
       this.show = arr;
+      this.partialUrl = "http://10.0.2.2/signup-API/";
     },
     (err)=>{
       alert("failed");
@@ -96,6 +99,8 @@ getCategory()
       passing:passid,
     });
   }
+
+
 }
  
   

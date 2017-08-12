@@ -27,50 +27,54 @@ dateTime:any;
 singleArray:any;
   ionViewWillEnter()
   {
-   this.load();
+   this.showRequest();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ShowRequestPage');
-    
   }
 
-  load()
-    {
-     this.storage.get('id').then((val)=>{
-      this.consid = val;
-    });
-  }
+  
   
   showRequest()
   {
+   
+    this.storage.get('id').then(val => {
+      this.consid = val;
     var arr = new Array();
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let data = JSON.stringify({
-      id:this.consid,
-    })
+      id:this.consid
+    });
+
     this.http.post('http://localhost/signup-API/new1.php?rquest=showRequest', data,headers).map(res => res.json()).subscribe(res =>{
       var array = Array();
       this.request = res.msg;
+      console.log(res.msg);
+      
       for(var i = 0; i<this.request.length;i++)
       {
         array.push({
           normalReq:this.request[i],
-          date: new Date(this.request.modifiedDate).toLocaleString
+          date: new Date(this.request[i].modifiedDate).toLocaleDateString()
         });
       }
       this.singleArray = array;
       alert(this.request.length);
-
+      
       console.log(this.singleArray);
-    });
+      
+      
+    },
+    (err) => {alert("connection Failed");}
+    );
+  })
     
   }
 
   requirementDetail(requirement)
   {
-    console.log(requirement);
     this.navCtrl.push(RequirementDetailsPage, {
       reqDet:requirement,
       consumerId: this.consid,

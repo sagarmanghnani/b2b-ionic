@@ -7,11 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-
-    <button ion-button menuToggle icon-only>
-      <ion-icon name='menu'></ion-icon>
-     </button>
-    <ion-title>category</ion-title>
+    <ion-title>categorycat</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -23,8 +19,10 @@
     <ion-row wrap justify-content-start >
       <ion-col *ngFor = "let is of show" col-12 col-sm-12 col-md-6 col-lg-6>
         <ion-card (click) = "selectSubcategory(is.id)" >
-        <img src = "../../assets/images/kka.jpg" class="imag">
+        <img src = "{{this.partialUrl}}{{is.image}}" class="imag">
         <div class="card-title">{{is.name}}</div>
+
+        <button ion-button block (click) = "sendSms()">Sms</button>
         </ion-card>
       </ion-col>
     </ion-row>

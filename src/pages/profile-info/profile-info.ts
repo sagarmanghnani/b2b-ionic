@@ -28,6 +28,7 @@ export class ProfileInfoPage {
   
   phone:any = this.navParams.get('phones');
   accountType = this.navParams.get('accountType');
+  profileImage:any;
   Cameraupload()
   {
     const options: CameraOptions = {
@@ -88,9 +89,18 @@ export class ProfileInfoPage {
         
         fileTransfer.upload(imageData, 'http://10.0.2.2/signup-API/new1.php?rquest=getImage',option1).then((data)=>{
           alert(data.response);
+          var save = JSON.parse(data.response);
+          alert(save);
           var key = Object.keys(data);
           alert(key);
-          this.navCtrl.push(DashboardPage);
+          alert(save.profileImage);
+          if(save.status == 'Success')
+          {
+            alert(save.profileImage);
+          this.profileImage = "http://10.0.2.2/signup-API/" + save.profileImage;
+          alert(this.profileImage);
+          /*this.navCtrl.push(DashboardPage);*/
+          }
         },
         (err) =>{
           alert('failed');
@@ -105,8 +115,6 @@ export class ProfileInfoPage {
        );
       
   }
-
-
 
 
    presentActionSheet() {

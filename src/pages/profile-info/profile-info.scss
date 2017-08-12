@@ -1,6 +1,12 @@
 page-profile-info {
-    .image{
-        height: 100%;
-        width: 20%;
-    }
+ ion-col{
+     max-height: 500px;
+     max-width: 500px;
+
+     .image{
+         height: 100%;
+         width: 100%;
+         align-content: center;
+     }
+ }
 }
