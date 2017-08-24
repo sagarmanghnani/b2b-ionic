@@ -4,9 +4,8 @@ page-profile-info {
      max-width: 500px;
 
      .image{
-         height: 100%;
-         width: 100%;
-         align-content: center;
+         position: relative;
+         margin-left: 50%;
      }
  }
 }

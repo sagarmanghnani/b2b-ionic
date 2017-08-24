@@ -56,7 +56,7 @@ error: string;
 
 showData()
 {
-  alert(this.oneform.get('accountType').value);
+  //alert(this.oneform.get('accountType').value);
 }
 
   postRequest()
@@ -80,7 +80,7 @@ showData()
         if(res.status === 'Success')
         {
           
-          alert("pushing");
+          //alert("pushing");
           var phone = this.oneform.get('Phone').value;
           this.sms.send(phone, res.getotp).then(res => {
             

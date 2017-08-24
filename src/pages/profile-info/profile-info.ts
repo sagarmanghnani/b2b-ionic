@@ -56,7 +56,7 @@ export class ProfileInfoPage {
 
    deploy(check)
    {
-     alert(this.phone);
+     //alert(this.phone);
         
      var ops;
      if(check == 1)
@@ -67,10 +67,10 @@ export class ProfileInfoPage {
      {
        ops = this.GalleryUpload();
      }
-     alert(ops.quality);
+     //alert(ops.quality);
      this.camera.getPicture(ops).then((imageData)=>{
        let image = 'data:image/jpeg;FILE_URI' + imageData;
-       alert(image);
+       //alert(image);
 
        const fileTransfer: TransferObject = this.transfer.create();
 
@@ -88,18 +88,18 @@ export class ProfileInfoPage {
         }
         
         fileTransfer.upload(imageData, 'http://10.0.2.2/signup-API/new1.php?rquest=getImage',option1).then((data)=>{
-          alert(data.response);
+          //alert(data.response);
           var save = JSON.parse(data.response);
-          alert(save);
+          //alert(save);
           var key = Object.keys(data);
-          alert(key);
-          alert(save.profileImage);
+          //alert(key);
+          //alert(save.profileImage);
           if(save.status == 'Success')
           {
-            alert(save.profileImage);
+            //alert(save.profileImage);
           this.profileImage = "http://10.0.2.2/signup-API/" + save.profileImage;
-          alert(this.profileImage);
-          /*this.navCtrl.push(DashboardPage);*/
+          //alert(this.profileImage);
+          //this.navCtrl.push(DashboardPage);
           }
         },
         (err) =>{

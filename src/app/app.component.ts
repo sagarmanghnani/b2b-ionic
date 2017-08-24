@@ -13,7 +13,7 @@ import {ShowRequestPage} from '../pages/show-request/show-request';
 })
 export class MyApp {
    @ViewChild(Nav) nav: Nav;
-  rootPage:any = HomePage;
+  rootPage:any = LoginPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

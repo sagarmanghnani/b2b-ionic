@@ -16,8 +16,8 @@ export class ViewBidsPage {
 
   requestId: any = this.navParams.get('requestId');
   constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http) {
-  }
-  
+  }  
+bid:boolean;  
 supplierBids:any;
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewBidsPage');
@@ -37,10 +37,19 @@ supplierBids:any;
       requestId: this.requestId
     });
 
-    this.http.post('http://localhost/signup-API/new1.php?rquest=viewBid', data,headers).map(res => res.json()).subscribe(res =>{
+    this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=viewBid', data,headers).map(res => res.json()).subscribe(res =>{
       if(res.status == "Success")
       {
-        this.supplierBids = res.msg;
+        this.supplierBids = res.msg;   
+        var length = Object.keys(this.supplierBids).length;
+        if(length === 0)
+        {
+          this.bid = false;
+        }
+        else
+        {
+          this.bid = true;
+        }
       }
   });
   }

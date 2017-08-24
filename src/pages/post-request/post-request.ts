@@ -29,7 +29,7 @@ range:any;
 post:any;
 location:any;
 cityId:any;
-unit:any;
+unit:any = "Units";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public http:Http, public storage:Storage, public loading:LoadingController) {
     this.request = formBuilder.group({
@@ -57,7 +57,7 @@ unit:any;
       content: 'Loading Posts....'
     });
     loadingPopup.present();
-    this.http.get('http://localhost/signup-API/new1.php?rquest=selectCity').map(res => res.json()).subscribe(res => {
+    this.http.get('http://10.0.2.2/signup-API/new1.php?rquest=selectCity').map(res => res.json()).subscribe(res => {
       this.post = res.msg;
       loadingPopup.dismiss();
     });
@@ -130,8 +130,8 @@ unit:any;
     }
    sendRequest()
   {
-    alert(this.unit);
-    alert(this.consid);
+    //alert(this.unit);
+    //alert(this.consid);
      var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let data = JSON.stringify({
@@ -150,13 +150,12 @@ unit:any;
       companyName:this.request2.get('companyName').value,
     });
 
-    alert(data);
+    //alert(data);
 
-    this.http.post('http://localhost/signup-API/new1.php?rquest=postRequest', data, headers).map(res=>res.json()).subscribe(res=>{
+    this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=postRequest', data, headers).map(res=>res.json()).subscribe(res=>{
       if(res.status == 'Success')
       {
         this.navCtrl.push(DashboardPage); 
-        console.log(res.city);
       }
       else
       {
@@ -186,7 +185,7 @@ unit:any;
   show()
   {
     var min = this.request1.controls['minRange'].value;
-    alert(min);
+    //alert(min);
   }
 
   initializedItems()

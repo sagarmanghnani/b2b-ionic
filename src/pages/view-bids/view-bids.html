@@ -15,16 +15,43 @@
 
 <ion-content padding>
 <ion-grid>
-  <ion-list>
+  <ion-list *ngIf = "bid">
     <ion-item *ngFor = "let bid of supplierBids">
-      <ion-col>
-        <h1>{{bid.name}}</h1>
-      </ion-col>
+      <ion-row>
+        <ion-col>
+          <h1> supplier Name :- {{bid.name}}</h1>
+        </ion-col>
+      </ion-row>
 
-      <ion-col>
-        {{bid.bidValue}}
-      </ion-col>
+      <ion-row>
+        <ion-col>
+          supplier Email :- {{bid.email}}
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          supplier Phone Number :- {{bid.phoneNo}}
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          Bid value by supplier :- {{bid.bidValue}}
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col text-wrap> 
+          Bid Terms by supplier :- {{bid.bidTerms}}
+        </ion-col>
+      </ion-row>
+
     </ion-item>
   </ion-list>
+
+  <ion-col *ngIf = "!bid">
+    No data to show    
+  </ion-col>
 </ion-grid>
 </ion-content>

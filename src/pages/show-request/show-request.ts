@@ -25,6 +25,7 @@ consid:any;
 request:any;
 dateTime:any;
 singleArray:any;
+data:boolean;
   ionViewWillEnter()
   {
    this.showRequest();
@@ -48,11 +49,18 @@ singleArray:any;
       id:this.consid
     });
 
-    this.http.post('http://localhost/signup-API/new1.php?rquest=showRequest', data,headers).map(res => res.json()).subscribe(res =>{
+    this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=showRequest', data,headers).map(res => res.json()).subscribe(res =>{
       var array = Array();
       this.request = res.msg;
+      var length = Object.keys(this.request).length;
+
       console.log(res.msg);
-      
+      if(length === 0)
+      {
+        this.data = false;
+      }
+      else{
+        this.data = true;
       for(var i = 0; i<this.request.length;i++)
       {
         array.push({
@@ -61,14 +69,15 @@ singleArray:any;
         });
       }
       this.singleArray = array;
-      alert(this.request.length);
+      //alert(this.request.length);
       
       console.log(this.singleArray);
       
-      
+      }
     },
-    (err) => {alert("connection Failed");}
+    //(err) => {alert("connection Failed");}
     );
+    
   })
     
   }

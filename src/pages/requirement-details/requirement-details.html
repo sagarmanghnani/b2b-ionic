@@ -19,16 +19,18 @@
  
 
  <ion-card>
-  <ion-row justify-content-start>
-   <p style="text-align:center">Requirement Details</p>
+  <ion-row>
+  <ion-col>
+    <h2 text-center>Requirement Details</h2>
+  </ion-col>
   </ion-row> 
   <br>
   <ion-col ion-item>
     <h1>{{requirement.normalReq.Title}}</h1>
   </ion-col>
   <br>
-  <ion-col ion-item>
-    <h4>Description :- {{requirement.normalReq.description}}</h4>
+  <ion-col ion-item text-wrap>
+    <h4 class="align">Description :- {{requirement.normalReq.description}}</h4>
   </ion-col>
   <br>
   <ion-col ion-item>
@@ -52,12 +54,13 @@
   </ion-col>
   <br>
   <ion-col offset-9>
-    {{requirement.normalReq.modifiedDate}}
+    {{requirement.normalReq.modifiedDate|date:'dd/MM/yyyy'}}
   </ion-col>
   </ion-card>
  
  <button ion-button round (click) = "passBid()">View Bids</button>
 
+ <button ion-button round (click) = "deleteRequest()">Delete</button>
 </ion-grid>
 
 </ion-content>

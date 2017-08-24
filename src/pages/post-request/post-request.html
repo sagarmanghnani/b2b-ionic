@@ -66,8 +66,8 @@
           <ion-item *ngIf="!request1.controls.maxRange.valid && request1.controls.maxRange.dirty">
             Maximum range must be greater then Minimum range
           </ion-item>
-          <button ion-button round (click) = "next()" [disabled] = "!request1.valid">Next</button>
           <button ion-button round (click) = "prev()">prev</button>
+          <button ion-button round (click) = "next()" [disabled] = "!request1.valid">Next</button>
         </form>
       </ion-card>
     </ion-slide>
@@ -95,13 +95,13 @@
               </ion-item>
               </ion-col>
 
-              <ion-col col-6>
+              <ion-col col-6> 
                 <ion-item>
                   <ion-label floating>Unit</ion-label>
                   <ion-select [(ngModel)]="unit" [ngModelOptions]="{standalone: true}">
                     <ion-option value="Pieces">Pieces</ion-option>
                     <ion-option value="Kilogram">Kilogram</ion-option>
-                    <ion-option  selected value="Units">Units</ion-option>
+                    <ion-option value="Units" selected>Units</ion-option>
                     <ion-option value="Tons">Tons</ion-option>
                     <ion-option value="meter">meter</ion-option>
                     <ion-option value="Liter">Liter</ion-option>
@@ -127,8 +127,8 @@
               <ion-input type="text" formControlName="color" [class.invalid] = "!request2.controls.color.valid && request2.controls.color.dirty"></ion-input>
             </ion-item>
           </ion-list>
-          <button (click) = "sendRequest()" [disabled] = "!request2.valid">send</button>
          <button ion-button round (click) = "prev()">prev</button>
+          <button (click) = "sendRequest()" [disabled] = "!request2.valid" ion-buttons round>send</button>
         </form>
       </ion-card>
     </ion-slide>
