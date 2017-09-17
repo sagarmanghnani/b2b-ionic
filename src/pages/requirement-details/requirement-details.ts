@@ -72,7 +72,7 @@ deleteRequest()
       {
         text:'Delete',
         handler: () => {
-           this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=deleteRequest', data, headers).map(res=>res.json()).subscribe(res=>{
+           this.http.post('http://localhost/signup-API/new1.php?rquest=deleteRequest', data, headers).map(res=>res.json()).subscribe(res=>{
             if(res.status == 'Success')
               {
                 this.navCtrl.push(ShowRequestPage);

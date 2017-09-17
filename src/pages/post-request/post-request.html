@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>postRequest</ion-title>
+    <ion-title>Post Request</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -27,7 +27,7 @@
 
             <ion-item>
               <ion-label floating>Description</ion-label>
-              <ion-input type="text" formControlName="Description" [class.invalid] = "!request.controls.Description.valid && request.controls.Description.dirty"></ion-input>
+              <ion-textarea type="text" formControlName="Description" [class.invalid] = "!request.controls.Description.valid && request.controls.Description.dirty"></ion-textarea>
             </ion-item>
 
             <ion-item>
@@ -61,6 +61,22 @@
                 <ion-input type="number" formControlName = "maxRange" ngDefaultControl [(ngModel)] = "check" [class.invalid] = "!request1.controls.maxRange.valid && request1.controls.maxRange.dirty"></ion-input>
                 </ion-item>
               </ion-col>
+
+              <ion-col>
+                <ion-item>
+                  <ion-range  pin = "true" dualKnobs="true" min = {{request1.controls.minRange.value}} max = {{request1.controls.maxRange.value}} [(ngModel)] = "structure" [ngModelOptions]="{standalone: true}" (ionChange) = "onDataChange($event)" debounce="500" step="10">
+                    <ion-icon small range-left name="sunny"></ion-icon>
+                      <ion-icon range-right name="sunny"></ion-icon>
+                  </ion-range>
+                  </ion-item>                   
+              </ion-col>
+             
+              <div>
+                <!--{{structure.upper}}
+                {{structure.lower}}-->
+                {{min}}
+              </div> 
+
             </ion-row>
           </ion-grid>
           <ion-item *ngIf="!request1.controls.maxRange.valid && request1.controls.maxRange.dirty">
@@ -75,11 +91,13 @@
     <ion-slide>
       <p>Enter location</p>
        <ion-searchbar (ionInput)="getLocation($event)" placeholder="city, state"></ion-searchbar>
-       <ion-list *ngIf = "location">
+       <ion-scroll style="width:100%; height:100vh" scrollY="true">
+       <ion-list *ngIf = "location" scroll="true">
           <ion-item  *ngFor="let item of location" (click) = "getCity(item.id)">
             {{ item.location }}    
           </ion-item>
       </ion-list>
+       </ion-scroll>
     </ion-slide>
 
 
@@ -128,7 +146,7 @@
             </ion-item>
           </ion-list>
          <button ion-button round (click) = "prev()">prev</button>
-          <button (click) = "sendRequest()" [disabled] = "!request2.valid" ion-buttons round>send</button>
+          <button (click) = "sendRequest()" [disabled] = "!request2.valid" ion-button round>send</button>
         </form>
       </ion-card>
     </ion-slide>

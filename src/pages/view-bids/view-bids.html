@@ -7,47 +7,38 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>viewBids</ion-title>
+    <ion-title>View Bids</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="page-view-bids">
 <ion-grid>
   <ion-list *ngIf = "bid">
-    <ion-item *ngFor = "let bid of supplierBids">
+    
+    <button ion-item *ngFor = "let bid of supplierBids" (click) = "selectBid(bid)" [class.approved] = "bid.status == 1" [class.reject] = "bid.status == -1">
       <ion-row>
-        <ion-col>
-          <h1> supplier Name :- {{bid.name}}</h1>
+        <ion-col text-wrap>
+          supplier Name :- {{bid.name}}
         </ion-col>
       </ion-row>
+
 
       <ion-row>
         <ion-col>
-          supplier Email :- {{bid.email}}
+          Bid value :- {{bid.bidValue}}
         </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col>
-          supplier Phone Number :- {{bid.phoneNo}}
+        <ion-col style = "text-align:start;">
+          bidded on {{bid.modifiedDate|date:'dd/MM/yyyy'}}
         </ion-col>
       </ion-row>
-
-      <ion-row>
-        <ion-col>
-          Bid value by supplier :- {{bid.bidValue}}
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col text-wrap> 
-          Bid Terms by supplier :- {{bid.bidTerms}}
-        </ion-col>
-      </ion-row>
-
-    </ion-item>
+    
+    </button>
+  
   </ion-list>
 
   <ion-col *ngIf = "!bid">

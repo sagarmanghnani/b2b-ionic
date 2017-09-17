@@ -45,7 +45,7 @@ partialUrl:any;
 getCategory()
   {
     var arr = new Array();
-    this.http.get('http://10.0.2.2/signup-API/new1.php?rquest=showCategory').map(res => res.json()).subscribe(res =>{
+    this.http.get('http://localhost/signup-API/new1.php?rquest=showCategory').map(res => res.json()).subscribe(res =>{
       this.data = res.msg;
       this.passon = this.data;
 
@@ -70,7 +70,7 @@ getCategory()
       }
       arr.sort(compare);
       this.show = arr;
-      this.partialUrl = "http://10.0.2.2/signup-API/";
+      this.partialUrl = "http://localhost/signup-API/";
     },
     (err)=>{
       alert("failed");

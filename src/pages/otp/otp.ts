@@ -53,7 +53,7 @@ email:any = this.navParams.get('email');
           otp:this.otp.get('otps').value,
         });
 
-        this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=verifyOtp', data, headers).map(res=>res.json()).subscribe(res=>{
+        this.http.post('http://localhost/signup-API/new1.php?rquest=verifyOtp', data, headers).map(res=>res.json()).subscribe(res=>{
           if(res.status == 'Success')
           {
             //alert(res.msg + " verify");
@@ -83,7 +83,7 @@ email:any = this.navParams.get('email');
         
         console.log("otp value is" + this.otp.get('otps').value);
 
-        this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=getOtp',data,headers).map(res => res.json()).subscribe(res => {
+        this.http.post('http://localhost/signup-API/new1.php?rquest=getOtp',data,headers).map(res => res.json()).subscribe(res => {
           if(res.status == 'Success')
           {
               this.storage.set('id', res.msg);

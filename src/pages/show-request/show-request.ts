@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, LoadingController } from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import {Http, Headers} from '@angular/http';
 import {Storage} from '@ionic/storage';
-import {RequirementDetailsPage} from '../requirement-details/requirement-details'
+import {RequirementDetailsPage} from '../requirement-details/requirement-details';
+
 /**
  * Generated class for the ShowRequestPage page.
  *
@@ -17,7 +18,13 @@ import {RequirementDetailsPage} from '../requirement-details/requirement-details
 })
 export class ShowRequestPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http, public storage:Storage,public menu:MenuController) {
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,
+      public http:Http,
+       public storage:Storage,
+       public menu:MenuController,
+      public loading:LoadingController,
+    ) {
     menu.enable(true);
   }
 
@@ -49,8 +56,14 @@ data:boolean;
       id:this.consid
     });
 
-    this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=showRequest', data,headers).map(res => res.json()).subscribe(res =>{
-      var array = Array();
+    let loadingPopup = this.loading.create({
+      content: 'Loading Requests....'
+    });
+    loadingPopup.present();
+
+    this.http.post('http://localhost/signup-API/new1.php?rquest=showRequest', data,headers).map(res => res.json()).subscribe(res =>{
+      loadingPopup.dismiss();
+    var array = Array();
       this.request = res.msg;
       var length = Object.keys(this.request).length;
 

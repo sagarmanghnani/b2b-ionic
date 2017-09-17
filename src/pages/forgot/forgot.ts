@@ -17,6 +17,7 @@ import { SMS } from '@ionic-native/sms';
 })
 export class ForgotPage {
 forgot: FormGroup;
+error:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public http:Http, public sms:SMS) {
     this.forgot = formBuilder.group({
       email:['',Validators.compose([Validators.required, Validators.email])],
@@ -37,7 +38,7 @@ forgot: FormGroup;
        accountType:"Consumer",
      })
 
-     this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=forgotPass', data, headers).map(res=>res.json()).subscribe(res=>{
+     this.http.post('http://localhost/signup-API/new1.php?rquest=forgotPass', data, headers).map(res=>res.json()).subscribe(res=>{
        if(res.status == 'Success')
        {
          //alert(res.msg);
@@ -50,7 +51,7 @@ forgot: FormGroup;
      }
      else
      {
-       alert(res.status);
+       this.error = res.msg;
      }
      },
      (err)=>{

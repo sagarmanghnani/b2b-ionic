@@ -27,7 +27,7 @@ import {WelcomePage} from '../pages/welcome/welcome';
 import {DashboardPage} from '../pages/dashboard/dashboard';
 import { SMS } from '@ionic-native/sms';
 import {ViewBidsPage} from '../pages/view-bids/view-bids';
-
+import {SelectBidPage} from '../pages/select-bid/select-bid';
 
 @NgModule({
   declarations: [
@@ -47,6 +47,7 @@ import {ViewBidsPage} from '../pages/view-bids/view-bids';
     WelcomePage,
     DashboardPage,
     ViewBidsPage,
+    SelectBidPage,
   ],
   imports: [
     BrowserModule,
@@ -72,6 +73,7 @@ import {ViewBidsPage} from '../pages/view-bids/view-bids';
     WelcomePage,
     DashboardPage,
     ViewBidsPage,
+    SelectBidPage,
   ],
   providers: [
     StatusBar,

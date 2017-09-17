@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>forgot</ion-title>
+    <ion-title>Forgot</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -21,11 +21,12 @@
 		<ion-card-content>
 			Enter registered email address
 			<br>
+			<div *ngIf = "error" style="padding-top:10px">{{error}}</div>
 			<form [formGroup] = "forgot">
 				<ion-list>
 					<ion-item>
 						<ion-label floating>Enter Email address</ion-label>
-						<ion-input type="email" formControlName="email" [class.invalid] = "!forgot.valid"></ion-input>
+						<ion-input type="email" formControlName="email" [class.invalid] = "!forgot.valid && forgot.dirty"></ion-input>
 					</ion-item>
 					<button ion-button round (click) = "forgotPass()">Submit</button>
 				</ion-list>

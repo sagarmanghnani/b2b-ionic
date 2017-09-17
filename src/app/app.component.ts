@@ -7,6 +7,7 @@ import {LoginPage} from '../pages/login/login';
 import {DashboardPage} from '../pages/dashboard/dashboard';
 import {CategoryPage} from '../pages/category/category';
 import {ShowRequestPage} from '../pages/show-request/show-request';
+import {PostRequestPage} from '../pages/post-request/post-request';
 
 @Component({
   templateUrl: 'app.html'

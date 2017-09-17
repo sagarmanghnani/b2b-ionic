@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Slides, LoadingController, AlertController } from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import {Http, Headers} from '@angular/http';
 import {Storage} from '@ionic/storage';
@@ -30,8 +30,18 @@ post:any;
 location:any;
 cityId:any;
 unit:any = "Units";
+hasRanged:boolean = false;
+structure:any = {lower:'', upper:''};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public http:Http, public storage:Storage, public loading:LoadingController) {
+  constructor(
+    public navCtrl: NavController,
+     public navParams: NavParams,
+      public formBuilder: FormBuilder,
+       public http:Http,
+        public storage:Storage,
+         public loading:LoadingController,
+         public alerts:AlertController,
+        ) {
     this.request = formBuilder.group({
       Title:['', Validators.required],
       Description:['', Validators.required],
@@ -40,7 +50,7 @@ unit:any = "Units";
 
     this.request1 = formBuilder.group({
        minRange:['', Validators.required],
-      maxRange:['',Validators.required ], 
+      maxRange:['',Validators.required ],
     },
     {
       validator: this.greaterThen
@@ -50,18 +60,18 @@ unit:any = "Units";
     this.request2 = formBuilder.group({
       companyName:'',
        Quantity:['', Validators.compose([Validators.required, this.quantityCheck])],
-      color:['', Validators.required],
+      color:'',
     });
   
+    //this.request1.controls.structure.setValue({lower: Number(this.request1.get('minRange').value), upper:Number(this.request1.get('maxRange').value)}); 
      let loadingPopup = this.loading.create({
       content: 'Loading Posts....'
     });
     loadingPopup.present();
-    this.http.get('http://10.0.2.2/signup-API/new1.php?rquest=selectCity').map(res => res.json()).subscribe(res => {
+    this.http.get('http://localhost/signup-API/new1.php?rquest=selectCity').map(res => res.json()).subscribe(res => {
       this.post = res.msg;
       loadingPopup.dismiss();
     });
-
   }
 
 
@@ -132,6 +142,12 @@ unit:any = "Units";
   {
     //alert(this.unit);
     //alert(this.consid);
+    if(this.hasRanged)
+      {
+        this.request1.controls['minRange'].setValue(this.structure.lower);
+        alert(typeof(this.request1.controls['minRange'].value));
+        this.request1.controls['maxRange'].setValue(this.structure.upper);
+      }
      var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let data = JSON.stringify({
@@ -150,9 +166,9 @@ unit:any = "Units";
       companyName:this.request2.get('companyName').value,
     });
 
-    //alert(data);
+    alert(data);
 
-    this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=postRequest', data, headers).map(res=>res.json()).subscribe(res=>{
+    this.http.post('http://localhost/signup-API/new1.php?rquest=postRequest', data, headers).map(res=>res.json()).subscribe(res=>{
       if(res.status == 'Success')
       {
         this.navCtrl.push(DashboardPage); 
@@ -215,6 +231,16 @@ getCity(id)
    this.next();
 }
 
+onDataChange()
+{
+  this.hasRanged = true;
+  console.log(this.structure.lower);
+  //this.request1.controls['minRange'].setValue(this.structure.lower);
+  //this.request1.controls['maxRange'].setValue(this.structure.upper);
+  console.log(this.structure.upper
+  );
+
+}
 
 
 }

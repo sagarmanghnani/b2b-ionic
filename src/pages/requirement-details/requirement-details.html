@@ -25,12 +25,12 @@
   </ion-col>
   </ion-row> 
   <br>
-  <ion-col ion-item>
+  <ion-col ion-item text-wrap>
     <h1>{{requirement.normalReq.Title}}</h1>
   </ion-col>
   <br>
   <ion-col ion-item text-wrap>
-    <h4 class="align">Description :- {{requirement.normalReq.description}}</h4>
+    <h4>Description :- {{requirement.normalReq.description}}</h4>
   </ion-col>
   <br>
   <ion-col ion-item>
@@ -53,7 +53,7 @@
     Quantity :- {{requirement.normalReq.quantity}}
   </ion-col>
   <br>
-  <ion-col offset-9>
+  <ion-col style="text-align:end">
     {{requirement.normalReq.modifiedDate|date:'dd/MM/yyyy'}}
   </ion-col>
   </ion-card>

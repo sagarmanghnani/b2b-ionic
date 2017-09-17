@@ -10,7 +10,7 @@
     <button ion-button menuToggle icon-only>
       <ion-icon name='menu'></ion-icon>
      </button>
-    <ion-title>showRequest</ion-title>
+    <ion-title>Show Request</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -22,22 +22,22 @@
    <ion-list>
      <button ion-item *ngFor = "let req of singleArray" (click) = "requirementDetail(req)">
         <ion-row>
-          <ion-col>
+          <ion-col text-wrap>
             <ion-icon name="cart"></ion-icon>
-            {{req.normalReq.Title}}
+            Product Title: {{req.normalReq.Title}}
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            {{req.normalReq.companyName}}
+            Company Name: {{req.normalReq.companyName}}
           </ion-col>
         </ion-row>
           <ion-row>
           <ion-col>
-            <small>{{req.normalReq.name}}</small>
+            <small>Category: {{req.normalReq.name}}</small>
           </ion-col>
           <ion-col style="text-align:end">
-            <small>{{req.date}}</small>
+            <small>Posted on {{req.date}}</small>
           </ion-col>
         </ion-row>
 
