@@ -8,6 +8,7 @@ import {Http, Headers} from '@angular/http';
 import {OtpPage} from '../otp/otp';
 import {AppVersion} from '@ionic-native/app-version';
 import { SMS } from '@ionic-native/sms';
+import {LoginPage} from '../login/login';
 /**
  * Generated class for the SignupPage page.
  *
@@ -107,5 +108,10 @@ showData()
       })
       
       
+  }
+
+  xclick()
+  {
+    this.navCtrl.push(LoginPage);
   }
 }

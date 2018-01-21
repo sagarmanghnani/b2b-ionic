@@ -1,6 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Muli');
 page-signup {
-    .invalid{
-        border: 1px solid #ea6153;
+    .content{
+        background-color: color($colors,color1);
     }
+   .setHeader{
+        font-size: 1.4em;
+        font-weight: bold;
+        color: color($colors,label);
+       ion-icon{
+           padding-left: 3%;
+       }
+       p{
+           margin-top: 0;
+           padding-left: 3%;
+          
+        }
+           //padding-top: 0;
+           
+       
+   }
+   .setLogo{
+      img{
+          display: block;
+          height: 10%;
+          width: 30%;
+          margin: auto;
+          margin-top: 3%;
+      }
+   }
+   
+   .items{
+    background-color: color($colors,color1);
+    color: color($colors, label);
+   }
+
+   .registerbtn{
+    text-align: center;
+    margin-top: 9%;
+       button{
+           width: 55%;
+           
+       }
+       
+   }
 }
 

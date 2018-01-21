@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProfileInfoPage} from '../profile-info/profile-info';
 import {ForgotpassPage} from '../forgotpass/forgotpass';
 import {Storage} from '@ionic/storage';
+import { SMS } from '@ionic-native/sms';
 
 /**
  * Generated class for the OtpPage page.
@@ -22,7 +23,7 @@ export class OtpPage {
 otp:FormGroup;
 appNumber: any;
 error:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public formBuilder: FormBuilder, public storage:Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public formBuilder: FormBuilder, public storage:Storage, public sms:SMS) {
     this.otp = formBuilder.group({
         otps: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(5)])],
     })
@@ -53,7 +54,7 @@ email:any = this.navParams.get('email');
           otp:this.otp.get('otps').value,
         });
 
-        this.http.post('http://localhost/signup-API/new1.php?rquest=verifyOtp', data, headers).map(res=>res.json()).subscribe(res=>{
+        this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=verifyOtp', data, headers).map(res=>res.json()).subscribe(res=>{
           if(res.status == 'Success')
           {
             //alert(res.msg + " verify");
@@ -83,7 +84,7 @@ email:any = this.navParams.get('email');
         
         console.log("otp value is" + this.otp.get('otps').value);
 
-        this.http.post('http://localhost/signup-API/new1.php?rquest=getOtp',data,headers).map(res => res.json()).subscribe(res => {
+        this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=getOtp',data,headers).map(res => res.json()).subscribe(res => {
           if(res.status == 'Success')
           {
               this.storage.set('id', res.msg);
@@ -102,6 +103,27 @@ email:any = this.navParams.get('email');
         }
         )
   }
+  }
+
+  resendOtp()
+  {
+     var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let data = JSON.stringify({
+      phone:this.phone,
+    });
+    
+    this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=resendConsumerOtp',data,headers).map(res => res.json()).subscribe(res => {
+      if(res.status == 'Success')
+      {
+        console.log(res.msg);
+        this.sms.send(this.phone, res.msg);
+      }
+      else
+      {
+        alert(res.msg);
+      }
+    });
   }
 }
 

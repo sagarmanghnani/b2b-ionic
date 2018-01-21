@@ -6,38 +6,43 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>SMS Verification</ion-title>
-  </ion-navbar>
+  <!--<ion-navbar hideBackButton>
+    <ion-title text-center>Verify Mobile Phone</ion-title>!
+  </ion-navbar>-->
 
 </ion-header>
 
-  
-<ion-content padding>
-  <ion-card>
-    <ion-card-header>
-      OTP
-    </ion-card-header>
-    <ion-card-content>
-        Enter otp provided to you in your email box
-        <br>
-        <br>
-        <div>
-          <ion-list>
-              <form [formGroup] = "otp">
-                  <ion-item>
-                    <ion-input type="number" placeholder="Enter OTP" formControlName = "otps"></ion-input>
-                  </ion-item>
-
-                  <p ion-item *ngIf = "error">{{error}}</p>
-              </form>
-          </ion-list>
-            
-          <br>
-          <button ion-button round (click) = "sendOtp()" [disabled]="!otp.valid">Submit</button>
+ 
+<ion-content>
+        <div class="margin1">
+         <img src = "../../assets/images/phonehand.jpg" class="img"/>
+        </div>  
+        
+        <div class="text">
+        <p>We have sent you an access code<br></p>
+        <p>via SMS for Mobile number verification</p>
         </div>
-    </ion-card-content>
-  </ion-card>
-  
+        <div class="otp">
+          <p>Enter Code here</p>
+          <div class="inputbox">
+            <ion-list>
+                <form [formGroup] = "otp">
+                    <ion-item>
+                      <ion-input type="number" placeholder="Enter OTP" formControlName = "otps"></ion-input>
+                    </ion-item>
 
+                    <p ion-item *ngIf = "error">{{error}}</p>
+                </form>
+            </ion-list>
+          </div>  
+          <br>
+          <!--<button ion-button round (click) = "sendOtp()" [disabled]="!otp.valid">Submit</button>-->
+          <div *ngIf = "otp.valid">
+            <img src = "../../assets/images/logeedin.png" (click) = "sendOtp()" class="image"/>
+          </div>
+        </div>
+        <!--<button ion-button round (click) = "resendOtp()">Resend Otp </button>-->
+        <p (click) = "resendOtp()" class="resend">Resend OTP</p>
+    
 </ion-content>
+

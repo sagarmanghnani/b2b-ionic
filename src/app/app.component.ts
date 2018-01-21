@@ -8,13 +8,16 @@ import {DashboardPage} from '../pages/dashboard/dashboard';
 import {CategoryPage} from '../pages/category/category';
 import {ShowRequestPage} from '../pages/show-request/show-request';
 import {PostRequestPage} from '../pages/post-request/post-request';
+import {ProfileInfoPage} from '../pages/profile-info/profile-info';
+import {SignupPage} from '../pages/signup/signup';
+import {OtpPage} from '../pages/otp/otp';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
    @ViewChild(Nav) nav: Nav;
-  rootPage:any = LoginPage;
+  rootPage:any = SignupPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

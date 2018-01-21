@@ -28,6 +28,7 @@ export class ProfileInfoPage {
   
   phone:any = this.navParams.get('phones');
   accountType = this.navParams.get('accountType');
+  selectImage:boolean;
   profileImage:any;
   Cameraupload()
   {
@@ -87,7 +88,7 @@ export class ProfileInfoPage {
          }
         }
         
-        fileTransfer.upload(imageData, 'http://localhost/signup-API/new1.php?rquest=getImage',option1).then((data)=>{
+        fileTransfer.upload(imageData, 'http://10.0.2.2/signup-API/new1.php?rquest=getImage',option1).then((data)=>{
           //alert(data.response);
           var save = JSON.parse(data.response);
           //alert(save);
@@ -97,7 +98,8 @@ export class ProfileInfoPage {
           if(save.status == 'Success')
           {
             //alert(save.profileImage);
-          this.profileImage = "http://localhost/signup-API/" + save.profileImage;
+          this.profileImage = "http://10.0.2.2/signup-API/" + save.profileImage;
+          this.selectImage = true;
           //alert(this.profileImage);
           //this.navCtrl.push(DashboardPage);
           }

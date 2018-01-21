@@ -1,5 +1,54 @@
 page-otp {
-    .check{
-        background-color: red;
+
+   .margin1{
+       
+       background-color: #1c2e40;
+       padding-top: 30%;
+       margin: 0px;
+       padding-left: 0px;
+       .img{
+           
+        position: relative;
+        height: 11%;
+        width: 29%;
+        display: block;
+        background-color: #1c2e40;
+        margin: auto;
+        top: 15px;
+        z-index: 99;
+        //left: 37%;
+        border-radius: 50%;
+       }
+   }
+   .text{
+      text-align: center;
+      padding-top: 10%;
+      color: #1c2e40;
+   }
+
+   .otp{
+       padding-top: 4%;
+       p{
+           text-align: center;
+           color: #acacad;
+       }
+       .inputbox{
+        padding-left: 15%;
+        padding-right: 15%;
     }
+   }
+
+   .resend{
+       margin-top: 10%;
+       font-size: 1.1em;
+       color: #1c2e40;
+       text-align: center;
+   }
+  .image{
+      height: 30%;
+      width: 15%;
+      display: block;
+      margin: auto;
+  }
+   
 }

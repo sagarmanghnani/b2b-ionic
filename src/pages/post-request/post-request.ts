@@ -5,7 +5,7 @@ import {Http, Headers} from '@angular/http';
 import {Storage} from '@ionic/storage';
 import {greater} from '../../validators/greaterthen';
 import {DashboardPage} from '../dashboard/dashboard';
-
+import {RequirementDetailsPage} from '../requirement-details/requirement-details'
 /**
  * Generated class for the PostRequestPage page.
  *
@@ -45,7 +45,7 @@ structure:any = {lower:'', upper:''};
     this.request = formBuilder.group({
       Title:['', Validators.required],
       Description:['', Validators.required],
-      modelnum:['', Validators.required],
+      modelnum:'',
     });
 
     this.request1 = formBuilder.group({
@@ -67,6 +67,7 @@ structure:any = {lower:'', upper:''};
      let loadingPopup = this.loading.create({
       content: 'Loading Posts....'
     });
+
     loadingPopup.present();
     this.http.get('http://localhost/signup-API/new1.php?rquest=selectCity').map(res => res.json()).subscribe(res => {
       this.post = res.msg;
@@ -145,7 +146,7 @@ structure:any = {lower:'', upper:''};
     if(this.hasRanged)
       {
         this.request1.controls['minRange'].setValue(this.structure.lower);
-        alert(typeof(this.request1.controls['minRange'].value));
+        //alert(typeof(this.request1.controls['minRange'].value));
         this.request1.controls['maxRange'].setValue(this.structure.upper);
       }
      var headers = new Headers();
@@ -166,12 +167,34 @@ structure:any = {lower:'', upper:''};
       companyName:this.request2.get('companyName').value,
     });
 
-    alert(data);
+    //alert(data);
 
     this.http.post('http://localhost/signup-API/new1.php?rquest=postRequest', data, headers).map(res=>res.json()).subscribe(res=>{
       if(res.status == 'Success')
       {
-        this.navCtrl.push(DashboardPage); 
+        //getting today's date
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+        var todays = mm + '/' + dd + '/' + yyyy;
+        //ends here
+        data = JSON.parse(data);
+        data["priceRange"] = this.request1.get('minRange').value + ',' + this.request1.get('maxRange').value;
+        data["Title"] = this.request.get('Title').value;
+        data["colorPreference"] = this.request2.get('color').value;
+        data["modelNo"] = this.request.get('modelnum').value;
+
+        var postData = {
+          normalReq:data,
+          date:todays
+        }
+        console.log("post data");
+        console.log(postData);
+        this.navCtrl.push(RequirementDetailsPage, {
+          reqDet:postData,
+          pageType:"postRequest"
+        }); 
       }
       else
       {
@@ -214,6 +237,7 @@ structure:any = {lower:'', upper:''};
     this.initializedItems();
     let val = ev.target.value;
     if (val && val.trim() != ''){
+      console.log(this.location);
     this.location = this.location.filter((loc) => {
       return(loc.location.toLowerCase().indexOf(val.toLowerCase()) > -1);
       
@@ -237,11 +261,9 @@ onDataChange()
   console.log(this.structure.lower);
   //this.request1.controls['minRange'].setValue(this.structure.lower);
   //this.request1.controls['maxRange'].setValue(this.structure.upper);
-  console.log(this.structure.upper
-  );
+  console.log(this.structure.upper);
 
 }
-
 
 }
 

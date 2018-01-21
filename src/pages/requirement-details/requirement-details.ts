@@ -38,6 +38,7 @@ maxrange:any;
 
 show()
 {
+  console.log(this.requirement);
   var separate = this.requirement.normalReq.priceRange;
   var sep = separate.split(",");
   this.minrange = sep[0];

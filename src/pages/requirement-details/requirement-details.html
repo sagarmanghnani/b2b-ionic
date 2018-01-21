@@ -25,42 +25,42 @@
   </ion-col>
   </ion-row> 
   <br>
-  <ion-col ion-item text-wrap>
+  <ion-col ion-item text-wrap class="margin">
     <h1>{{requirement.normalReq.Title}}</h1>
   </ion-col>
-  <br>
-  <ion-col ion-item text-wrap>
+  
+  <ion-col ion-item text-wrap class="margin">
     <h4>Description :- {{requirement.normalReq.description}}</h4>
   </ion-col>
-  <br>
-  <ion-col ion-item>
+  
+  <ion-col ion-item class="margin">
       price range :- {{minrange}} - {{maxrange}}
   </ion-col>
-  <br>
-  <ion-col ion-item>
+  
+  <ion-col ion-item class="margin">
     product type :- {{requirement.normalReq.productType}}
   </ion-col>
-<br>
-  <ion-col ion-item>
+
+  <ion-col ion-item *ngIf = "requirement.normalReq.modelNo" class="margin">
     Model number :- {{requirement.normalReq.modelNo}}
   </ion-col>
-<br>
-  <ion-col ion-item>
+
+  <ion-col ion-item *ngIf = "requirement.normalReq.colorPreference" class="margin">
     color :- {{requirement.normalReq.colorPreference}}
   </ion-col>
-  <br>
-  <ion-col ion-item>
+  
+  <ion-col ion-item class="margin">
     Quantity :- {{requirement.normalReq.quantity}}
   </ion-col>
-  <br>
-  <ion-col style="text-align:end">
+  
+  <ion-col style="text-align:end" class="margin">
     {{requirement.normalReq.modifiedDate|date:'dd/MM/yyyy'}}
   </ion-col>
   </ion-card>
  
  <button ion-button round (click) = "passBid()">View Bids</button>
 
- <button ion-button round (click) = "deleteRequest()">Delete</button>
+ <button ion-button round (click) = "deleteRequest()" *ngIf = "requirement.normalReq.status == 0">Delete</button>
 </ion-grid>
 
 </ion-content>

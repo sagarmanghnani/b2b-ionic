@@ -13,48 +13,80 @@
 </ion-header>-->
 
 
-<ion-content padding>
+<ion-content class="contentcolor">
 
-  <ion-grid>
-    <ion-col style="text-align:center;">
-      <img src = "../../assets/images/apple-logo_318-40184.jpg" class="image">
-    </ion-col>
-  </ion-grid>
-  <div class="logger">
-<ion-list>
-  <ion-item *ngIf = "error">
-    <p>{{error}}</p>
-  </ion-item>
-  <form [formGroup] = "loginform">
-  <ion-item>
-    <ion-label floating>Email / Mobile Number</ion-label>
-    <ion-input type="text" formControlName = "username" ></ion-input>
-  </ion-item>
-
-   <ion-item *ngIf = "!loginform.controls.username.valid && loginform.controls.username.dirty">
-        <p>Enter valid email address or phone Number</p>
-      </ion-item>
-
-  <ion-item>
-    <ion-label floating>Password</ion-label>
-    <ion-input type="password" formControlName = "password"></ion-input>
-  </ion-item>
-
-  <ion-item *ngIf = "!loginform.controls.password.valid && loginform.controls.password.dirty">
-        <p>Enter valid password</p>
-      </ion-item>
-
-  </form>
-  <div style="margin-top:20px;">
-  <button ion-button block [disabled] = "!loginform.valid" (click) = "postLoginRequest()">Login</button>
+  <ion-grid class="grid">
+   
+  
+<div>
+  <div>
+    <p class="logintext">Login</p>
   </div>
-  <br>
-    <a (click) = "push()">Forgot Password</a>
-
-    <div style="margin-top:20px;">
-      Don't have an account yet? <a (click) = "signup()">Sign Up.</a>
+  <div>
+    <img src = "../../assets/images/google.png" class="img"/>
+  </div>
+</div>  
+<ion-list class="list">
+  
+    <div *ngIf = "error" class="error">
+      <p>{{error}}</p>
     </div>
-</ion-list>
 
-</div>
-</ion-content>
+    <form [formGroup] = "loginform" class="form">
+      <ion-row class="manage"> 
+        
+        <ion-item class="item" col-10 no-lines>
+            <ion-icon name="ios-person-outline" item-left></ion-icon>
+            <ion-label floating color="label">Email / Mobile*</ion-label>
+            <ion-input type="text" formControlName = "username" class ="text-input"></ion-input>
+        </ion-item>
+        <ion-item *ngIf = "!loginform.controls.username.valid && loginform.controls.username.dirty">
+          <p>Enter valid email address or phone Number</p>
+        </ion-item>
+      </ion-row>
+
+      <ion-row class="manage">
+       
+        <ion-item class="item" col-10 no-lines>
+            <ion-icon name="ios-key-outline" item-left></ion-icon>
+          <ion-label floating color="label">Password*</ion-label>
+          <ion-input type="password" formControlName = "password"></ion-input>
+        </ion-item>
+        
+      </ion-row>
+      <p *ngIf = "!loginform.controls.password.valid && loginform.controls.password.dirty" class="validation">Enter valid password</p>
+
+    </form>
+
+   
+  </ion-list>
+  <div class = "butn">
+      <button ion-button round [disabled] = "!loginform.valid" (click) = "postLoginRequest()"><ion-avatar><img src="../../assets/images/002-login.png"></ion-avatar></button>
+    </div>
+  
+</ion-grid>
+
+    <!--<ion-row>
+      <div class="signup">
+         <button ion-button block outline (click) = "signup()">Sign Up.</button>
+      </div>
+    </ion-row>!-->
+    <ion-grid>
+      <ion-footer>
+      <ion-row class="signforgot">
+        <div col-6>
+            <button ion-button (click) = "push()" class="forgot">Forgot Password?</button>
+          </div>
+         
+        <div col-6>
+          <button ion-button class="signBtn" (click) = "signup()">Create an account</button>
+        </div>
+      </ion-row>
+      </ion-footer>
+    </ion-grid>
+   
+  </ion-content>
+
+
+
+

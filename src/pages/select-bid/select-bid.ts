@@ -45,7 +45,7 @@ export class SelectBidPage {
     this.http.post('http://localhost/signup-API/new1.php?rquest=approveBids', data, headers).map(res=>res.json()).subscribe(res=>{
       if(res.status == 'Success')
         {
-          alert(res.msg);
+          //alert(res.msg);
           this.status = 1;
         }
       else
@@ -69,7 +69,7 @@ export class SelectBidPage {
     this.http.post('http://localhost/signup-API/new1.php?rquest=rejectBid', data, headers).map(res=>res.json()).subscribe(res=>{
       if(res.status == 'Success')
       {
-        alert(res.msg);
+        //alert(res.msg);
         this.status = -1;
       }
       else

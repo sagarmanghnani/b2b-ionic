@@ -1,13 +1,100 @@
+@import url('https://fonts.googleapis.com/css?family=Muli');
+
+
 page-login {
-    .image{
-        width:50%;
-        height:50%;
-    }
 
-    .logger{
-        margin-top: 50%;
-        text-align: center;
-    }
+   .contentcolor{
+       background-color: #1c2e40;
+   }
+   .logintext{
+       text-align: right;
+       color: #59d9a4;
+       padding-top: 5%;
+       font-size: 1.4em;
+       font-weight: bold;
+       padding-right: 10%;
+   } 
 
+   .img{
+       height: 10%;
+       width: 45%;
+       display: block;
+       margin: auto;
+       padding-top: 4%;
+   }
+
+   .list{
+       padding-top: 4%;
+       color: red;
+
+   }
+   .manage{
+       width: 80%;
+       margin-left: 18%;
+       margin-right: 15%;
+   }
+
+   /*.input-cover{
+       background-color: #262d37;
+       //z-index: 30;
+       
+   }*/
+  
+
+ 
+   //using color variable to change the color
+  .label{
+      //background-color: red;
+      //color: color($colors,red);
+      //font-size: 2.5em;
+      z-index: 30;
+      color: color($colors,label);
+  }
+
+  
+ .item{
+     background-color: #1c2e40;
+     color: color($colors,label);
+     
+     z-index: 100;
+     ion-icon{
+         padding-left: 3%;
+         padding-top: 8%;
+     }
+     
+ }
+ .imagech{
+    display: block;
+    padding-top: 45%;
+    padding-left: 14%;
+    display: block;
+    //height: 84%;
+ }
+
+ .butn{
+     text-align: center;
+     margin-top: 10%;
+     
+     button{
+         padding-left: 20%;
+         padding-right: 20%;
+         background-color: #59d9a4;
+         ion-avatar{
+             height: 15%;
+             width: 55%;
+             padding-bottom: 50%;
+         }
+     }
+ }
+
+ .signforgot{
+     margin-top: 10%;
+     button{
+        color: #59d9a4;
+        background-color: #1c2e40;
+        box-shadow: none;
+
+     }
     
+ }
 }

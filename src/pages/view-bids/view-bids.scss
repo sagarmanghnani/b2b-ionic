@@ -1,8 +1,8 @@
 page-view-bids {
     .approved{
-        background-color: lightgreen;
+        border-left: solid 5px lightgreen;    
     }
     .reject{
-        background-color: #ff5e00;
+        border-left: solid 5px #ff5e00;
     }
 }
