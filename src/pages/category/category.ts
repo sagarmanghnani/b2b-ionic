@@ -1,8 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Injectable } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, Slides } from 'ionic-angular';
 import {Http, Headers} from '@angular/http';
-import { ViewController } from 'ionic-angular';
-import {PostRequestPage} from '../post-request/post-request'
+import { ViewController,Events } from 'ionic-angular';
+import {PostRequestPage} from '../post-request/post-request';
+
+
 /**
  * Generated class for the CategoryPage page.
  *
@@ -14,9 +16,15 @@ import {PostRequestPage} from '../post-request/post-request'
   selector: 'page-category',
   templateUrl: 'category.html',
 })
+@Injectable()
 export class CategoryPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http, public menu:MenuController) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public http:Http,
+    public menu:MenuController,
+    public events:Events
+  ) {
     menu.enable(true, 'menu1');
   }
 @ViewChild(Slides) setslide:Slides;
@@ -40,7 +48,7 @@ ionViewWillEnter()
   getCategory()
   {
     var arr = new Array();
-    this.http.get('http://localhost/signup-API/new1.php?rquest=showCategory').map(res => res.json()).subscribe(res =>{
+    this.http.get('http://10.0.2.2/signup-API/new1.php?rquest=showCategory').map(res => res.json()).subscribe(res =>{
       this.data = res.msg;
       this.passon = this.data;
 
@@ -65,7 +73,7 @@ ionViewWillEnter()
       }
       arr.sort(compare);
       this.show = arr;
-      this.partialUrl = "http://localhost/signup-API/";
+      this.partialUrl = "http://10.0.2.2/signup-API/";
     },
     (err)=>{
       alert("failed");
@@ -96,6 +104,12 @@ ionViewWillEnter()
       passing:passid,
     });
   }
+ 
+ logger()
+ {
+   alert("logger is here");
+ }
+ 
 }
 
 

@@ -11,13 +11,14 @@ import {PostRequestPage} from '../pages/post-request/post-request';
 import {ProfileInfoPage} from '../pages/profile-info/profile-info';
 import {SignupPage} from '../pages/signup/signup';
 import {OtpPage} from '../pages/otp/otp';
+import {SplashscreenPage} from '../pages/splashscreen/splashscreen';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
    @ViewChild(Nav) nav: Nav;
-  rootPage:any = SignupPage;
+  rootPage:any = SplashscreenPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
@@ -36,6 +37,7 @@ export class MyApp {
     ];
   }
 
+  ionic
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario

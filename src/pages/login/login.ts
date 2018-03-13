@@ -6,6 +6,7 @@ import {SignupPage} from '../signup/signup';
 import {ForgotPage} from '../forgot/forgot';
 import {Storage} from '@ionic/storage';
 import {DashboardPage} from '../dashboard/dashboard';
+import {HomePage} from '../home/home';
 
 /**
  * Generated class for the LoginPage page.

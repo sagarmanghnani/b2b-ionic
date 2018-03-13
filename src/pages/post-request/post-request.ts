@@ -69,7 +69,7 @@ structure:any = {lower:'', upper:''};
     });
 
     loadingPopup.present();
-    this.http.get('http://localhost/signup-API/new1.php?rquest=selectCity').map(res => res.json()).subscribe(res => {
+    this.http.get('http://10.0.2.2/signup-API/new1.php?rquest=selectCity').map(res => res.json()).subscribe(res => {
       this.post = res.msg;
       loadingPopup.dismiss();
     });
@@ -169,7 +169,7 @@ structure:any = {lower:'', upper:''};
 
     //alert(data);
 
-    this.http.post('http://localhost/signup-API/new1.php?rquest=postRequest', data, headers).map(res=>res.json()).subscribe(res=>{
+    this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=postRequest', data, headers).map(res=>res.json()).subscribe(res=>{
       if(res.status == 'Success')
       {
         //getting today's date

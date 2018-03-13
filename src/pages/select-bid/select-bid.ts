@@ -91,7 +91,7 @@ export class SelectBidPage {
       requestId: this.bidDetails.requestId
     });
 
-    this.http.post('http://localhost/signup-API/new1.php?rquest=decideLater', data, headers).map(res=>res.json()).subscribe(res=>{
+    this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=decideLater', data, headers).map(res=>res.json()).subscribe(res=>{
       if(res.status == 'Success')
         {
           alert(res.msg);

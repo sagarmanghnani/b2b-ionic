@@ -1,4 +1,4 @@
-<ion-header>
+<!--<ion-header>
   <ion-navbar>
      <button ion-button menuToggle icon-only>
       <ion-icon name='menu'></ion-icon>
@@ -7,70 +7,40 @@
       Ionic Blank
     </ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header>-->
 
+
+
+ 
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      <p>Navigate to SignUp</p>
-      <button (click) = "navigate()">Submit</button>
-    </ion-item>
-    <ion-item>
-      <p>Navigate to Signin</p>
-      <button (click) = "login()">Login</button>
-    </ion-item>
 
-    <ion-item>
-      <p>Navigate to  Seller Signin</p>
-      <button (click) = "nav()">Seller Signup</button>
-    </ion-item>
-
-    <ion-item>
-      <p>Navigate to  profile Signin</p>
-      <button (click) = "pageinfo()">Seller Signup</button>
-    </ion-item>
-
-    <ion-item>
-      <p>Navigate to  forgot password</p>
-      <button (click) = "forgot()">forgot</button>
-    </ion-item>
-
-    <ion-item>
-      <p>Navigate to Postrequest</p>
-      <button (click) = "Postrequest()">FOrgotPass</button>
-    </ion-item>
-
-    <ion-item>
-      <p>Navigate to category</p>
-      <button (click) = "category()">post</button>
-    </ion-item>
+  <ion-slides *ngIf="data && data.length" pager="true" loop = "true" speed = "2000" autoplay = "2000">
+    <ion-slide *ngFor = "let prodimage of data">
+      <ion-row>
+        <img src="{{category.partialUrl}}{{prodimage.images}}">
+      </ion-row>
+    </ion-slide>
+  </ion-slides>
 
 
-    <ion-item>
-      <p>showReq</p>
-      <button (click) = "showReq()">showReq</button>
-    </ion-item>
 
-    <ion-item>
-      <p>Welcome</p>
-      <button (click) = "welcome()">showReq</button>
-    </ion-item>
+    <ion-row>
+      <ion-col *ngFor = "let categ of category.show" col-4>
+          <ion-card (click) = "selectSubcategory(categ.id)" >
+          <img src = "{{category.partialUrl}}{{categ.image}}" class="imag">
+          <div class="card-title">{{categ.name}}</div>
+          </ion-card>
+      </ion-col>
 
-     <ion-item>
-      <p>Profile info</p>
-      <button (click) = "profile()">profile</button>
-    </ion-item>
+    </ion-row>
 
-     <ion-item>
-      <p>dashboard</p>
-      <button (click) = "Dashboard()">dashboard</button>
-    </ion-item>
-
-     <ion-item>
-      <p>otp</p>
-      <button (click) = "otp()">otp</button>
-    </ion-item>
-
-  </ion-list>
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+    <ion-row>
+      <ion-col *ngFor = "let subcateg of category.children" col-4>
+        <ion-card (click) = "getcategoryid(subcateg.id)">
+            <img src = "../../assets/images/kka.jpg" class="imag">
+            <div class="card-title">{{subcateg.name}}</div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <button ion-button (click) = "productCorousel()">click me</button>
 </ion-content>

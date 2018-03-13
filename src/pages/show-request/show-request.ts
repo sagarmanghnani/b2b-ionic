@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import {Http, Headers} from '@angular/http';
 import {Storage} from '@ionic/storage';
 import {RequirementDetailsPage} from '../requirement-details/requirement-details';
+import {PostRequestPage} from '../post-request/post-request';
 
 /**
  * Generated class for the ShowRequestPage page.
@@ -61,7 +62,7 @@ data:boolean;
     });
     loadingPopup.present();
 
-    this.http.post('http://localhost/signup-API/new1.php?rquest=showRequest', data,headers).map(res => res.json()).subscribe(res =>{
+    this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=showRequest', data,headers).map(res => res.json()).subscribe(res =>{
       loadingPopup.dismiss();
     var array = Array();
       this.request = res.msg;
@@ -101,6 +102,11 @@ data:boolean;
       reqDet:requirement,
       consumerId: this.consid,
     });
+  }
+
+  postrequest()
+  {
+    this.navCtrl.push(PostRequestPage);
   }
 
 }

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController,MenuController,MenuToggle } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController,MenuController,MenuToggle,Tabs, App, Slides } from 'ionic-angular';
 import {SignupPage} from '../signup/signup';
 import {LoginPage} from '../login/login';
 import {ProfileInfoPage} from '../profile-info/profile-info';
@@ -7,85 +7,64 @@ import {ForgotPage} from '../forgot/forgot';
 import {ForgotpassPage} from '../forgotpass/forgotpass';
 import {PostRequestPage} from '../post-request/post-request';
 import {CategoryPage} from '../category/category';
-import {DeletePage} from '../delete/delete';
 import {ShowRequestPage} from '../show-request/show-request';
 import {RequirementDetailsPage} from '../requirement-details/requirement-details';
-import {WelcomePage} from '../welcome/welcome';
 import {Storage} from '@ionic/storage';
 import {DashboardPage} from '../dashboard/dashboard';
 import {OtpPage} from '../otp/otp';
+import {Http, Headers} from '@angular/http';
+import {ProductlistPage} from '../productlist/productlist';
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [CategoryPage]
 })
 export class HomePage {
-
-  constructor(public navCtrl: NavController, public storage: Storage, public menu:MenuController) {
+  data:any;
+  @ViewChild(Slides) slides:Slides;
+  constructor(public navCtrl: NavController,
+    public storage: Storage,
+    public menu:MenuController,
+    public http:Http,
+    public app:App,
+    public category:CategoryPage
+  ) {
     menu.enable(true, 'menu1');
+    this.category.getCategory();
   }
 
-  /* ionViewWillEnter()
+  ionViewWillEnter()
   {
-   this.load();
-  }*/
-
-    navigate(){
-      this.navCtrl.push(SignupPage);
-    }
-    
-  login(){
-    this.navCtrl.push(LoginPage);
+    this.productCorousel();
   }
 
-  pageinfo()
+  productCorousel()
   {
-    this.navCtrl.push(ProfileInfoPage);
-  }
-
-  forgot()
-  {
-    this.navCtrl.push(ForgotPage);
-  }
-
-  category()
-  {
-    this.navCtrl.push(CategoryPage);
-  }
-
-  showReq()
-  {
-    this.navCtrl.push(ShowRequestPage);
-  }
-
-  welcome()
-  {
-    this.navCtrl.push(WelcomePage);
-  }
-
-  profile()
-  {
-    this.navCtrl.push(ProfileInfoPage);
-  }
-
-  load()
-  {
-    this.storage.get('id').then((val)=>{
-      if(!val)
-      {
-        this.navCtrl.push(LoginPage);
-      }
+    this.http.get('http://10.0.2.2/signup-API/new1.php?rquest=productDetails').map(res => res.json()).subscribe(res =>{
+      this.data = res.msg;
+      
     });
   }
 
-  Dashboard()
+
+
+  selectSubcategory(parents)
   {
-    this.navCtrl.push(DashboardPage);
+    var child = new Array();
+    for(var i of this.category.passon)
+    {
+      if(parents == i.parent)
+      {
+        child.push(i);
+      }
+    }
+    this.category.children = child;
+  }
+  getcategoryid(id)
+  {
+    this.navCtrl.push(ProductlistPage, {
+      categoryId:id
+    });
   }
 
-  otp()
-  {
-    this.navCtrl.push(OtpPage);
-  }
-
-  
 }

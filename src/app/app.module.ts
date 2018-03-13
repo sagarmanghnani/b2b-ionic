@@ -28,7 +28,9 @@ import {DashboardPage} from '../pages/dashboard/dashboard';
 import { SMS } from '@ionic-native/sms';
 import {ViewBidsPage} from '../pages/view-bids/view-bids';
 import {SelectBidPage} from '../pages/select-bid/select-bid';
-
+import {SplashscreenPage} from '../pages/splashscreen/splashscreen';
+import {ProductlistPage} from '../pages/productlist/productlist';
+import {TabspagePage} from '../pages/tabspage/tabspage';
 @NgModule({
   declarations: [
     MyApp,
@@ -48,6 +50,9 @@ import {SelectBidPage} from '../pages/select-bid/select-bid';
     DashboardPage,
     ViewBidsPage,
     SelectBidPage,
+    SplashscreenPage,
+    ProductlistPage,
+    TabspagePage,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +79,9 @@ import {SelectBidPage} from '../pages/select-bid/select-bid';
     DashboardPage,
     ViewBidsPage,
     SelectBidPage,
+    SplashscreenPage,
+    ProductlistPage,
+    TabspagePage,
   ],
   providers: [
     StatusBar,
@@ -85,6 +93,7 @@ import {SelectBidPage} from '../pages/select-bid/select-bid';
     Transfer,
     FileChooser,
     SMS,    
+    CategoryPage
   ]
 })
 export class AppModule {}
